@@ -850,7 +850,6 @@ public class Item : MonoBehaviour
 
 		StartCoroutine(DestroyCor(showScore, anim_name, explEffect));
 
-
 	}
 
 	IEnumerator DestroyCor(bool showScore = false, string anim_name = "", bool explEffect = false)

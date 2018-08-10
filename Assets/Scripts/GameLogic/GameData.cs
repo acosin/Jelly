@@ -8,7 +8,7 @@ public class LevelData
 
     public void init()
     {
-        currentWave = -1;
+        currentWave = 0;
     }
 }
 
@@ -16,7 +16,7 @@ public class LevelData
 public class GameData : LSingleton<GameData>
 {
     public LevelData levelData;
-
+    public bool levelinit;
     public void init()
     {
         if(null == levelData)
@@ -25,5 +25,12 @@ public class GameData : LSingleton<GameData>
             levelData.init();
         }
 
+        levelinit = true;
+    }
+
+    public void reset()
+    {
+        levelinit = false;
+        levelData = null;
     }
 }

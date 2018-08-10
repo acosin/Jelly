@@ -1,21 +1,29 @@
 ﻿<Properties StartupConfiguration="{DDAEF058-4A1D-25DA-062F-F89674B6BC22}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameLogic/BattleSystem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/JellyGarden/Scripts/LevelManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameLogic/MagicFly.cs" Line="1" Column="1" />
-      <File FileName="Assets/JellyGarden/Scripts/LevelManager.cs" Line="1480" Column="28" />
+      <File FileName="Assets/Scripts/GameLogic/MagicFly.cs" Line="29" Column="43" />
+      <File FileName="Assets/JellyGarden/Scripts/LevelManager.cs" Line="1815" Column="31" />
       <File FileName="Assets/Scripts/GameLogic/Unit.cs" Line="7" Column="17" />
-      <File FileName="Assets/UnityPackages/JsonNetSample/JsonNetSample.cs" Line="33" Column="22" />
+      <File FileName="Assets/UnityPackages/JsonNetSample/JsonNetSample.cs" Line="46" Column="33" />
       <File FileName="Assets/Scripts/GameLogic/LevelConfig.cs" Line="41" Column="1" />
       <File FileName="Assets/Resources/level_1.json" Line="1" Column="1" />
-      <File FileName="Assets/JellyGarden/Scripts/LevelDebugger.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameLogic/GameData.cs" Line="18" Column="19" />
-      <File FileName="Assets/JellyGarden/Scripts/Item.cs" Line="119" Column="1" />
-      <File FileName="Assets/JellyGarden/Scripts/Square.cs" Line="56" Column="57" />
-      <File FileName="Assets/JellyGarden/Scripts/GUI/BoostAnimation.cs" Line="32" Column="12" />
-      <File FileName="Assets/Scripts/GameLogic/MagicSytem.cs" Line="8" Column="20" />
-      <File FileName="Assets/Scripts/GameLogic/SkillSystem.cs" Line="7" Column="25" />
-      <File FileName="Assets/Scripts/GameLogic/BattleSystem.cs" Line="57" Column="42" />
+      <File FileName="Assets/Scripts/GameLogic/GameData.cs" Line="32" Column="6" />
+      <File FileName="Assets/JellyGarden/Scripts/Item.cs" Line="1031" Column="14" />
+      <File FileName="Assets/JellyGarden/Scripts/Square.cs" Line="14" Column="5" />
+      <File FileName="Assets/JellyGarden/Scripts/GUI/BoostAnimation.cs" Line="24" Column="14" />
+      <File FileName="Assets/Scripts/GameLogic/MagicSytem.cs" Line="13" Column="20" />
+      <File FileName="Assets/Scripts/GameLogic/SkillSystem.cs" Line="9" Column="36" />
+      <File FileName="Assets/JellyGarden/Scripts/System/CombineManager.cs" Line="19" Column="29" />
+      <File FileName="Assets/JellyGarden/Scripts/ItemAnimEvents.cs" Line="4" Column="24" />
+      <File FileName="Assets/JellyGarden/Scripts/INAPP.cs" Line="12" Column="18" />
+      <File FileName="Assets/JellyGarden/Scripts/AI.cs" Line="134" Column="46" />
+      <File FileName="Assets/JellyGarden/Scripts/InitScript.cs" Line="30" Column="2" />
+      <File FileName="Assets/JellyGarden/Scripts/Editor/LevelMakerEditor.cs" Line="1236" Column="6" />
+      <File FileName="Assets/JellyGarden/Scripts/Integrations/EventsListener.cs" Line="13" Column="45" />
+      <File FileName="Assets/JellyGarden/Scripts/GUI/GameFieldAnim.cs" Line="8" Column="1" />
+      <File FileName="Assets/JellyGarden/Scripts/GUI/MovesLabel.cs" Line="9" Column="35" />
+      <File FileName="Assets/JellyGarden/Scripts/GUI/Tutorial/TutorialManager.cs" Line="15" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -23,12 +31,12 @@
     <BreakpointStore>
       <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/Item.cs" relfile="Assets/JellyGarden/Scripts/Item.cs" line="627" column="41" />
       <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/Editor/LevelMakerEditor.cs" relfile="Assets/JellyGarden/Scripts/Editor/LevelMakerEditor.cs" line="1942" column="1" />
-      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/System/CombineManager.cs" relfile="Assets/JellyGarden/Scripts/System/CombineManager.cs" line="172" column="1" />
       <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/Item.cs" relfile="Assets/JellyGarden/Scripts/Item.cs" line="524" column="10" />
-      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/LevelManager.cs" relfile="Assets/JellyGarden/Scripts/LevelManager.cs" line="2252" column="1" />
-      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/LevelManager.cs" relfile="Assets/JellyGarden/Scripts/LevelManager.cs" line="2255" column="1" />
-      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/Square.cs" relfile="Assets/JellyGarden/Scripts/Square.cs" line="56" column="57" />
-      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/Square.cs" relfile="Assets/JellyGarden/Scripts/Square.cs" line="57" column="1" />
+      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/LevelManager.cs" relfile="Assets/JellyGarden/Scripts/LevelManager.cs" line="2256" column="1" />
+      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/LevelManager.cs" relfile="Assets/JellyGarden/Scripts/LevelManager.cs" line="2259" column="1" />
+      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/Scripts/GameLogic/MagicSytem.cs" relfile="Assets/Scripts/GameLogic/MagicSytem.cs" line="13" column="20" />
+      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/LevelManager.cs" relfile="Assets/JellyGarden/Scripts/LevelManager.cs" line="179" column="1" />
+      <Breakpoint file="/Users/sin/Documents/work/Jelly/Assets/JellyGarden/Scripts/GUI/AnimationManager.cs" relfile="Assets/JellyGarden/Scripts/GUI/AnimationManager.cs" line="230" column="45" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

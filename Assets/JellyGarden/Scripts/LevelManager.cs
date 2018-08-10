@@ -486,7 +486,7 @@ public class LevelManager : MonoBehaviour
 
     void InitLevel()
     {
-        GameData.Instance.init();
+        
         GenerateLevel();
         GenerateOutline();
         ReGenLevel();
@@ -1004,6 +1004,10 @@ public class LevelManager : MonoBehaviour
 
             }
         }
+
+
+        //判断游戏是否结束：玩家死亡活着怪物被杀光
+        BattleSystem.Instance.Update();
     }
 
     IEnumerator TimeTick()
@@ -1436,7 +1440,7 @@ public class LevelManager : MonoBehaviour
 
     }
     //生成敌人
-    void GenerateNewEnemys(bool falling = true)
+    public void GenerateNewEnemys(bool falling = true)
     {
         for (int col = 0; col < maxCols; col++)
         {
@@ -1962,7 +1966,7 @@ public class LevelManager : MonoBehaviour
             }
 
             //falling down solider
-            //fallingDownSolider();
+            fallingDownSolider();
             if (!nearEmptySquareDetected)
                 yield return new WaitForSeconds(0.2f);
 
@@ -2403,8 +2407,9 @@ public class LevelManager : MonoBehaviour
         {
             for (int col = 0; col < maxCols; col++)
             {
-                if (GetSquare(col, row) != null)
-                    itemsList.Add(GetSquare(col, row, true).item);
+                Square square = GetSquare(col, row);
+                if (square != null && square.item != null)
+                    itemsList.Add(square.item);
             }
         }
         return itemsList;
@@ -2562,6 +2567,7 @@ public class LevelManager : MonoBehaviour
             mapText = Resources.Load("Levels/" + currentLevel) as TextAsset;
         }
         ProcessGameDataFromString(mapText.text);
+        GameData.Instance.init();
 #if false
         //加载怪物生成数据
         TextAsset levelText = Resources.Load("level_" + currentLevel) as TextAsset;
