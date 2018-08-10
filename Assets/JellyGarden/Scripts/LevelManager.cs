@@ -102,6 +102,7 @@ public class LevelManager : MonoBehaviour
     public string androidSharingPath;
     public string iosSharingPath;
 
+    public CLevelConfig levelConfig;
     public BoostIcon ActivatedBoost
     {
         get
@@ -384,6 +385,8 @@ public class LevelManager : MonoBehaviour
         if (currentLevel == 0)
             currentLevel = 1;
         LoadDataFromLocal(currentLevel);
+
+
 
     }
 
@@ -2505,13 +2508,9 @@ public class LevelManager : MonoBehaviour
 
         //加载怪物生成数据
         TextAsset levelText = Resources.Load("level_" + currentLevel) as TextAsset;
-        Debug.Log("levelText = " + levelText + "; levelText.text = " + levelText.text);
-        string json = JsonUtility.ToJson(levelText.text);
-        Debug.Log("json = " + json);
-
-
-
-
+        //Debug.Log("levelText = " + levelText + "; levelText.text = " + levelText.text);
+        levelConfig = JsonConvert.DeserializeObject<CLevelConfig>(levelText.text);
+        //Debug.Log("levelConfig = " + levelConfig);
 
     }
 
