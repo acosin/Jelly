@@ -1,0 +1,46 @@
+{
+	"LevelDesc": {
+		"MaxTime": 220,
+		"MinTime": 110,
+		"MoneyArray": ["110", "66", "44", "22"],
+		"MonsterHint": -1,
+		"SoldierUnlock": 3
+	},
+	"WaveDesc": [{
+		"GenerateStrategy": {
+			"CanGenerateBone": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+			"Prioity": ",,,,,,,,,,,,,,,0,,0,,0,"
+		},
+		"InitEnemyID": "1,-1,-1,-1,-1,-1,1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1",
+		"MonsterArray": [{
+			"MonsterCount": 3,
+			"MonsterID": 0
+		}]
+	}, {
+		"GenerateStrategy": {
+			"CanGenerateBone": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+			"Prioity": "1,,,,,,1,,,,,,,,,0,,0,,0,"
+		},
+		"InitEnemyID": "1,-1,-1,-1,-1,-1,1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1",
+		"MonsterArray": [{
+			"MonsterCount": 3,
+			"MonsterID": 0
+		}, {
+			"MonsterCount": 1,
+			"MonsterID": 1
+		}]
+	}, {
+		"GenerateStrategy": {
+			"CanGenerateBone": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+			"Prioity": "1,,,1,,,1,0,,,0,,,0,,,,,,,"
+		},
+		"InitEnemyID": "1,-1,-1,1,-1,-1,1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1",
+		"MonsterArray": [{
+			"MonsterCount": 4,
+			"MonsterID": 0
+		}, {
+			"MonsterCount": 1,
+			"MonsterID": 1
+		}]
+	}]
+}
