@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleSystem :LSingleton<BattleSystem> {
-
+    float intervalCheckWave;
     public IEnumerator onCombine(List<Combine> combines)
     {
         //处理玩法逻辑
@@ -101,22 +101,35 @@ public class BattleSystem :LSingleton<BattleSystem> {
 
     public void Update()
     {
-        //先判断游戏是否正在进行
-        if (LevelManager.THIS.gameStatus == GameState.Playing)
+        intervalCheckWave += Time.deltaTime;
+        if(intervalCheckWave > 2)
         {
-            //判断是否需要刷新下一轮怪物
-            if (LevelManager.Instance.GetEnemyItems().Count == 0 && GameData.Instance.levelinit)
+            intervalCheckWave = 0;
+            //先判断游戏是否正在进行
+            if (LevelManager.THIS.gameStatus == GameState.Playing)
             {
-                if (++GameData.Instance.levelData.currentWave > 3)
+                //为避免两拨怪间隔时间过短，一次消除会攻击下一波怪的情形，增加刷新间隔，每隔2秒检查一次
+                //判断是否需要刷新下一轮怪物
+                if (LevelManager.Instance.GetEnemyItems().Count == 0 && GameData.Instance.levelinit)
                 {
-                    //胜利,显示胜利界面，关卡结算
-                    return;
+                    if (++GameData.Instance.levelData.currentWave > 3)
+                    {
+                        //胜利,显示胜利界面，关卡结算
+                        OnSuccess();
+                        return;
+                    }
+                    Debug.Log("GameData.Instance.levelData.currentWave = " + GameData.Instance.levelData.currentWave);
+                    //刷新下一轮怪物
+                    LevelManager.Instance.GenerateNewEnemys(false);
+                    GameData.Instance.levelData.currentWave++;
                 }
-                Debug.Log("GameData.Instance.levelData.currentWave = " + GameData.Instance.levelData.currentWave);
-                //刷新下一轮怪物
-                LevelManager.Instance.GenerateNewEnemys(false);
-                GameData.Instance.levelData.currentWave++;
             }
         }
+    }
+
+    //胜利界面
+    public void OnSuccess()
+    {
+        Debug.Log("大吉大利，今晚吃鸡");
     }
 }
