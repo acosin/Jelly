@@ -642,35 +642,39 @@ public class Item : MonoBehaviour
 
 	IEnumerator FallingCor(Square _square, bool animate)
 	{
-		falling = true;
-		float startTime = Time.time;
-		Vector3 startPos = transform.position;
-		float speed = 10;
-		if (LevelManager.THIS.gameStatus == GameState.PreWinAnimations)
-			speed = 10;
-		float distance = Vector3.Distance(startPos, _square.transform.position);
-		float fracJourney = 0;
-		if (distance > 0.5f)
-		{
-			while (fracJourney < 1)
-			{
-				speed += 0.2f;
-				float distCovered = (Time.time - startTime) * speed;
-				fracJourney = distCovered / distance;
-                transform.position = Vector3.Lerp(startPos, _square.transform.position + Vector3.back * 0.2f, fracJourney);
-				yield return new WaitForFixedUpdate();
+        if (square.row > LevelManager.THIS.opponentRows)
+        {
+            falling = true;
+            float startTime = Time.time;
+            Vector3 startPos = transform.position;
+            float speed = 10;
+            if (LevelManager.THIS.gameStatus == GameState.PreWinAnimations)
+                speed = 10;
+            float distance = Vector3.Distance(startPos, _square.transform.position);
+            float fracJourney = 0;
+            if (distance > 0.5f)
+            {
+                while (fracJourney < 1)
+                {
+                    speed += 0.2f;
+                    float distCovered = (Time.time - startTime) * speed;
+                    fracJourney = distCovered / distance;
+                    transform.position = Vector3.Lerp(startPos, _square.transform.position + Vector3.back * 0.2f, fracJourney);
+                    yield return new WaitForFixedUpdate();
 
-			}
-		}
-		transform.position = _square.transform.position + Vector3.back * 0.2f;
-		if (distance > 0.5f && animate)
-		{
-			anim.SetTrigger("stop");
-			SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.drop[UnityEngine.Random.Range(0, SoundBase.Instance.drop.Length)]);
-		}
-		falling = false;
-		justCreatedItem = false;
-		transform.position = _square.transform.position + Vector3.back * 0.2f;//1.6.1
+                }
+            }
+            transform.position = _square.transform.position + Vector3.back * 0.2f;
+            if (distance > 0.5f && animate)
+            {
+                anim.SetTrigger("stop");
+                SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.drop[UnityEngine.Random.Range(0, SoundBase.Instance.drop.Length)]);
+            }
+            falling = false;
+            justCreatedItem = false;
+            transform.position = _square.transform.position + Vector3.back * 0.2f;//1.6.1
+        }
+		
 	}
 
 	public bool GetNearEmptySquares()
@@ -845,7 +849,6 @@ public class Item : MonoBehaviour
 			return;
 
 		StartCoroutine(DestroyCor(showScore, anim_name, explEffect));
-
 
 	}
 

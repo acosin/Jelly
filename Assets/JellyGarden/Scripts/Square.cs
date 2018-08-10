@@ -233,7 +233,7 @@ public class Square : MonoBehaviour
                         }
                     }
                 }
-                else//-1
+                else //-1
                 {
                     if (nextSquare.IsNone())
                     {

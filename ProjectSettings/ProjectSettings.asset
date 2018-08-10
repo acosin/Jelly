@@ -154,7 +154,7 @@ PlayerSettings:
     Android: com.best2dgamesstudio.jellygarden
     Standalone: unity.DefaultCompany.JellyGarden
     Tizen: com.best2dgamesstudio.jellygarden
-    iOS: com.best2dgamesstudio.jellygarden
+    iOS: com.ztgame.zt2zs
     tvOS: com.best2dgamesstudio.jellygarden
   buildNumber:
     iOS: 0

@@ -74,17 +74,49 @@ public class BattleSystem :LSingleton<BattleSystem> {
     {
         Unit unit = null;
         int count = 0;
-        while(count++ < 10)
+        List<Item> enemys = LevelManager.THIS.GetEnemyItems();
+        if(enemys.Count > 0)
         {
-            int row = Random.Range(0, LevelManager.THIS.opponentRows - 1);
-            int col = Random.Range(0, LevelManager.THIS.maxCols - 1);
-            unit = LevelManager.THIS.GetSquare(col, row) as Unit;
-            if(unit)
+            while (count++ < 100)
             {
-                break;
+                //int row = Random.Range(0, LevelManager.THIS.opponentRows - 1);
+                //int col = Random.Range(0, LevelManager.THIS.maxCols - 1);
+                //unit = LevelManager.THIS.GetSquare(col, row) as Unit;
+                int randomItemIndex = Random.Range(0, enemys.Count);
+                Item item = enemys[randomItemIndex];
+                if (item && item.square)
+                {
+                    unit = enemys[randomItemIndex].square as Unit;
+                    if (unit)
+                    {
+                        break;
+                    }
+                }
+
             }
         }
 
         return unit;
+    }
+
+    public void Update()
+    {
+        //先判断游戏是否正在进行
+        if (LevelManager.THIS.gameStatus == GameState.Playing)
+        {
+            //判断是否需要刷新下一轮怪物
+            if (LevelManager.Instance.GetEnemyItems().Count == 0 && GameData.Instance.levelinit)
+            {
+                if (++GameData.Instance.levelData.currentWave > 3)
+                {
+                    //胜利,显示胜利界面，关卡结算
+                    return;
+                }
+                Debug.Log("GameData.Instance.levelData.currentWave = " + GameData.Instance.levelData.currentWave);
+                //刷新下一轮怪物
+                LevelManager.Instance.GenerateNewEnemys(false);
+                GameData.Instance.levelData.currentWave++;
+            }
+        }
     }
 }

@@ -8,7 +8,10 @@ public class MagicSytem : LSingleton<MagicSytem>
     public void CreateMagic(Unit attacker, Unit defender, uint magicid)
     {
         //Magic magic = new Magic();
-
+        if(attacker==null || defender==null || defender.item == null)
+        {
+            return;
+        }
         //magics.Add(magic);
         Object arrowPrefab = Resources.Load("star");
 
