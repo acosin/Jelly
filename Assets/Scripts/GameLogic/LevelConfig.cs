@@ -35,3 +35,6 @@ public class CLevelConfig {
     public CLevelDesc LevelDesc;
     public List<CWave> WaveDesc;
 }
+
+
+

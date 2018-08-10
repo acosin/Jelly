@@ -74,15 +74,23 @@ public class BattleSystem :LSingleton<BattleSystem> {
     {
         Unit unit = null;
         int count = 0;
-        while(count++ < 10)
+        List<Item> enemys = LevelManager.THIS.GetEnemyItems();
+        while(count++ < 100)
         {
-            int row = Random.Range(0, LevelManager.THIS.opponentRows - 1);
-            int col = Random.Range(0, LevelManager.THIS.maxCols - 1);
-            unit = LevelManager.THIS.GetSquare(col, row) as Unit;
-            if(unit)
+            //int row = Random.Range(0, LevelManager.THIS.opponentRows - 1);
+            //int col = Random.Range(0, LevelManager.THIS.maxCols - 1);
+            //unit = LevelManager.THIS.GetSquare(col, row) as Unit;
+            int randomItemIndex = Random.Range(0, enemys.Count);
+            Item item = enemys[randomItemIndex];
+            if(item && item.square)
             {
-                break;
+                unit = enemys[randomItemIndex].square as Unit;
+                if (unit)
+                {
+                    break;
+                }
             }
+
         }
 
         return unit;

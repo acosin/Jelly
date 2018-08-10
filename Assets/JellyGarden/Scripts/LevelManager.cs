@@ -486,7 +486,7 @@ public class LevelManager : MonoBehaviour
 
     void InitLevel()
     {
-
+        GameData.Instance.init();
         GenerateLevel();
         GenerateOutline();
         ReGenLevel();
@@ -1210,7 +1210,7 @@ public class LevelManager : MonoBehaviour
     void SetOutline(int col, int row, float zRot)
     {
         Square square = GetSquare(col, row, true);
-        if(!square)
+        if (!square)
         {
             return;
         }
@@ -1477,7 +1477,7 @@ public class LevelManager : MonoBehaviour
         }
 #else
         int beginMineRow = LevelManager.THIS.opponentRows + LevelManager.THIS.spaceRows;
-        beginMineRow = 0;
+        //beginMineRow = 0;
         for (int col = 0; col < maxCols; col++)
         {
             for (int row = beginMineRow; row < maxRows; row++)
@@ -1806,8 +1806,43 @@ public class LevelManager : MonoBehaviour
         }
         return false;
     }
+    void fallingDownSolider()
+    {
+        //falling down solider
+        int beginMineRow = opponentRows + spaceRows;
 
+        for (int i = 0; i < 20; i++)
+        {   //just for testing
+            for (int col = 0; col < maxCols; col++)
+            {
+                for (int row = maxRows - 1; row >= beginMineRow; row--)
+                {   //need to enumerate rows from bottom to top
+                    if (GetSquare(col, row) != null)
+                        GetSquare(col, row).FallOut();
+                }
+            }
+            // yield return new WaitForFixedUpdate();
+        }
+    }
 
+    void fallingDownEnemy()
+    {
+        //falling down solider
+        int beginMineRow = 0;
+
+        for (int i = 0; i < 20; i++)
+        {   //just for testing
+            for (int col = 0; col < maxCols; col++)
+            {
+                for (int row = opponentRows - 1; row >= beginMineRow; row--)
+                {   //need to enumerate rows from bottom to top
+                    if (GetSquare(col, row) != null)
+                        GetSquare(col, row).FallOut();
+                }
+            }
+            // yield return new WaitForFixedUpdate();
+        }
+    }
     IEnumerator FallingDown()
     {
         bool nearEmptySquareDetected = false;
@@ -1926,19 +1961,8 @@ public class LevelManager : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
             }
 
-            //falling down
-            for (int i = 0; i < 20; i++)
-            {   //just for testing
-                for (int col = 0; col < maxCols; col++)
-                {
-                    for (int row = maxRows - 1; row >= 0; row--)
-                    {   //need to enumerate rows from bottom to top
-                        if (GetSquare(col, row) != null)
-                            GetSquare(col, row).FallOut();
-                    }
-                }
-                // yield return new WaitForFixedUpdate();
-            }
+            //falling down solider
+            //fallingDownSolider();
             if (!nearEmptySquareDetected)
                 yield return new WaitForSeconds(0.2f);
 
@@ -1992,7 +2016,7 @@ public class LevelManager : MonoBehaviour
             GenerateNewItems();
             StartCoroutine(RegenMatches(true));
             yield return new WaitForSeconds(0.1f);
-            while (!IsAllItemsFallDown())
+            while (!IsAllSoliderItemsFallDown())
             {
                 yield return new WaitForSeconds(0.1f);
             }
@@ -2025,7 +2049,7 @@ public class LevelManager : MonoBehaviour
             //    yield return new WaitForFixedUpdate();
             //matchesGot = false;
             //CheckIngredient();
-            while (!IsAllItemsFallDown())
+            while (!IsAllSoliderItemsFallDown())
             {//2.0
                 yield return new WaitForSeconds(0.1f);
             }
@@ -2232,7 +2256,27 @@ public class LevelManager : MonoBehaviour
         }
         return true;
     }
+    bool IsAllSoliderItemsFallDown()
+    {
+        if (gameStatus == GameState.PreWinAnimations)
+            return true;
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in items)
+        {
+            Item itemComponent = item.GetComponent<Item>();
+            if (itemComponent == null)
+            {
+                return false;
+            }
+            if (itemComponent.square.row > opponentRows)
+            {
+                if (itemComponent.falling)
+                    return false;
+            }
 
+        }
+        return true;
+    }
     public Vector2 GetPosition(Item item)
     {
         return GetPosition(item.square);
@@ -2352,6 +2396,19 @@ public class LevelManager : MonoBehaviour
         return itemsList;
     }
 
+    public List<Item> GetEnemyItems()
+    {
+        List<Item> itemsList = new List<Item>();
+        for (int row = 0; row < opponentRows; row++)
+        {
+            for (int col = 0; col < maxCols; col++)
+            {
+                if (GetSquare(col, row) != null)
+                    itemsList.Add(GetSquare(col, row, true).item);
+            }
+        }
+        return itemsList;
+    }
     public void SetTypeByColor(int p, ItemsTypes nextType)
     {
         GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
@@ -2505,13 +2562,13 @@ public class LevelManager : MonoBehaviour
             mapText = Resources.Load("Levels/" + currentLevel) as TextAsset;
         }
         ProcessGameDataFromString(mapText.text);
-
+#if false
         //加载怪物生成数据
         TextAsset levelText = Resources.Load("level_" + currentLevel) as TextAsset;
         //Debug.Log("levelText = " + levelText + "; levelText.text = " + levelText.text);
         levelConfig = JsonConvert.DeserializeObject<CLevelConfig>(levelText.text);
         //Debug.Log("levelConfig = " + levelConfig);
-
+#endif
     }
 
     void ProcessGameDataFromString(string mapText)
