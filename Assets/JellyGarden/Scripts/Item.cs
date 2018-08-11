@@ -967,7 +967,7 @@ public class Item : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-#if true
+#if OLD_LOGIC
     public void DestroyHorizontal()
 	{
 		SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.strippedExplosion);
