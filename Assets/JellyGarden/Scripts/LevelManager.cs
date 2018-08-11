@@ -484,9 +484,11 @@ public class LevelManager : MonoBehaviour
 
     void InitLevel()
     {
-        
+
         GenerateLevel();
+#if OLD_LOGIC
         GenerateOutline();
+#endif
         ReGenLevel();
         if (limitType == LIMIT.TIME)
         {
@@ -914,7 +916,8 @@ public class LevelManager : MonoBehaviour
         GenerateMineSolider();
         GenerateSpace();
         GenerateEnemySolider();
-        Vector3 fieldPos = new Vector3(-maxCols / 2.75f, maxRows / 2.75f, -10);
+        float scale = 0.4f;
+        Vector3 fieldPos = new Vector3(-maxCols * scale, maxRows * scale, -10);
         AnimateField(fieldPos);
 
     }
@@ -982,7 +985,7 @@ public class LevelManager : MonoBehaviour
         clip.AddEvent(new AnimationEvent() { time = 1, functionName = "EndAnimGamField" });
         anim.AddClip(clip, "appear");
         anim.Play("appear");
-        GameField.transform.position = new Vector2(pos.x + 15, pos.y + yOffset);
+        GameField.transform.position = new Vector2(pos.x + 0, pos.y + yOffset);
 
     }
 
@@ -994,8 +997,10 @@ public class LevelManager : MonoBehaviour
         {
             square.GetComponent<SpriteRenderer>().sprite = squareSprite1;
         }
+        square.GetComponent<SpriteRenderer>().enabled = false;
         square.transform.SetParent(GameField);
         square.transform.localPosition = firstSquarePosition + new Vector2(col * squareWidth, -row * squareHeight);
+
         squaresArray[row * maxCols + col] = square.GetComponent<Square>();
         square.GetComponent<Square>().row = row;
         square.GetComponent<Square>().col = col;
@@ -1054,7 +1059,7 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-
+#if OLD_LOGIC
     void GenerateOutline()
     {
         int row = 0;
@@ -1269,7 +1274,7 @@ public class LevelManager : MonoBehaviour
         spr.sortingOrder = 1;
         return outline;
     }
-
+#endif
     void CreateObstacles(int col, int row, GameObject square, SquareTypes type)
     {
         if ((levelSquaresFile[row * maxCols + col].obstacle == SquareTypes.WIREBLOCK && type == SquareTypes.NONE) || type == SquareTypes.WIREBLOCK)
