@@ -3,7 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Unit : Square, IMatchUnit,IBattleUnit {
-    
+    public int life = 3;
+    public void OnHarm(int harm)
+    {
+        if(harm >= life)
+        {
+            item.DestroyItem();
+        }
+        else
+        {
+            life -= harm;
+        }
+    }
     public void playHit()
     {
         
