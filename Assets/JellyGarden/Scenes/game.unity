@@ -5897,7 +5897,7 @@ MonoBehaviour:
   mineRows: 0
   squareWidth: 1
   squareHeight: 1
-  firstSquarePosition: {x: -2.4, y: 3.3}
+  firstSquarePosition: {x: -3, y: 3.3}
   squaresArray:
   - {fileID: 0}
   - {fileID: 0}
