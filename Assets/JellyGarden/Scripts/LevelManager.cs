@@ -916,7 +916,7 @@ public class LevelManager : MonoBehaviour
         GenerateMineSolider();
         GenerateSpace();
         GenerateEnemySolider();
-        float scale = 0.36f;
+        float scale = 0.4f;
         Vector3 fieldPos = new Vector3(-maxCols * scale, maxRows * scale, -10);
         AnimateField(fieldPos);
 
@@ -985,7 +985,7 @@ public class LevelManager : MonoBehaviour
         clip.AddEvent(new AnimationEvent() { time = 1, functionName = "EndAnimGamField" });
         anim.AddClip(clip, "appear");
         anim.Play("appear");
-        GameField.transform.position = new Vector2(pos.x + 15, pos.y + yOffset);
+        GameField.transform.position = new Vector2(pos.x + 0, pos.y + yOffset);
 
     }
 
@@ -1000,7 +1000,7 @@ public class LevelManager : MonoBehaviour
         square.GetComponent<SpriteRenderer>().enabled = false;
         square.transform.SetParent(GameField);
         square.transform.localPosition = firstSquarePosition + new Vector2(col * squareWidth, -row * squareHeight);
-        Debug.Log(col + "," + row + "==>square.transform.localPosition = " + square.transform.localPosition);
+
         squaresArray[row * maxCols + col] = square.GetComponent<Square>();
         square.GetComponent<Square>().row = row;
         square.GetComponent<Square>().col = col;
