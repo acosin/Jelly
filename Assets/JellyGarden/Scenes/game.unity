@@ -15015,7 +15015,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 164848, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: ScrollingEnabled
@@ -15071,11 +15071,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 167166, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 186290, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 165692, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190264, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
