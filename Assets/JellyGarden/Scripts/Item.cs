@@ -18,6 +18,7 @@ public class Item : MonoBehaviour
 {
     //items sprites array
     public Sprite[] items;
+    public Sprite[] items_enmey;
     public GameObject[] prefabs;
     //stripe extra items array
     public List<StripedItem> stripedItems = new List<StripedItem>();
@@ -80,6 +81,15 @@ public class Item : MonoBehaviour
     private float yScale;
     public bool boost;
     public Vector2 moveDirection;
+    public Sprite[]GetItemSprites()
+    {
+        if(square.row < LevelManager.THIS.opponentRows)
+        {
+            return items_enmey;
+        }
+
+        return items;
+    }
     //1.6
     // Use this for initialization
     void Start()
@@ -166,9 +176,9 @@ public class Item : MonoBehaviour
         if (remainColors.Count > 0)
             randColor = remainColors[UnityEngine.Random.Range(0, remainColors.Count)];
         if (exceptColor == randColor)
-            randColor = (randColor++) % items.Length;
+            randColor = (randColor++) % GetItemSprites().Length;
         LevelManager.THIS.lastRandColor = randColor;
-        sprRenderer.sprite = items[randColor];
+        sprRenderer.sprite = GetItemSprites()[randColor];
 
 #if OLD_LOGIC
         if (NextType == ItemsTypes.HORIZONTAL_STRIPPED)
@@ -220,7 +230,7 @@ public class Item : MonoBehaviour
 		}
 #else
         StartCoroutine(FallingCor(square, true));
-        color = Array.IndexOf(items, sprRenderer.sprite);
+        color = Array.IndexOf(GetItemSprites(), sprRenderer.sprite);
 #endif
         if (prefabs.Length > 0)
         {
@@ -240,8 +250,8 @@ public class Item : MonoBehaviour
     public void SetColor(int col)
     {
         color = col;
-        if (color < items.Length)
-            sprRenderer.sprite = items[color];
+        if (color < GetItemSprites().Length)
+            sprRenderer.sprite = GetItemSprites()[color];
     }
 
     public void SetAppeared()
@@ -302,7 +312,7 @@ public class Item : MonoBehaviour
         Sprite spr = null;
         while (true)
         {
-            spr = items[UnityEngine.Random.Range(0, items.Length)];
+            spr = GetItemSprites()[UnityEngine.Random.Range(0, GetItemSprites().Length)];
             yield return new WaitForFixedUpdate();
             break;
         }
