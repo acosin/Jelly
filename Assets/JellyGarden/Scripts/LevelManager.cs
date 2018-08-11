@@ -916,10 +916,26 @@ public class LevelManager : MonoBehaviour
         GenerateMineSolider();
         GenerateSpace();
         GenerateEnemySolider();
+#if true
         float scale = 0.4f;
-        Vector3 fieldPos = new Vector3(-maxCols * scale, maxRows * scale, -10);
+        Vector3 fieldPos = new Vector3(-3, maxRows * scale, -10);
         AnimateField(fieldPos);
+#else
+        float offset = 0;
+        Vector3 screenPoint = new Vector3(offset, 0, 0);
 
+        Vector3 leftworldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
+        Debug.Log("left worldPoint = " + leftworldPoint);
+
+        screenPoint = new Vector3(Screen.width - offset, Screen.height, 0);
+
+        Vector3 rightworldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
+        Debug.Log("right worldPoint = " + rightworldPoint);
+
+        float scale = 0.4f;
+        Vector3 fieldPos = new Vector3(leftworldPoint.x, maxRows * scale, -10);
+        AnimateField(fieldPos);
+#endif
     }
     void GenerateMineSolider()
     {

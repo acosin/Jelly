@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4525998971159040}
   - component: {fileID: 212432435750573280}
+  - component: {fileID: 114403045001393914}
   m_Layer: 0
   m_Name: star
   m_TagString: Untagged
@@ -40,6 +41,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114403045001393914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213639782001618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c966e16d10e416897d9309833f5a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPos: {x: 0, y: 0, z: 0}
+  targetUnit: {fileID: 0}
+  speed: 20
 --- !u!212 &212432435750573280
 SpriteRenderer:
   m_ObjectHideFlags: 1
