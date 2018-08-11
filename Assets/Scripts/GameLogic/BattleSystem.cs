@@ -132,6 +132,8 @@ public class BattleSystem :LSingleton<BattleSystem> {
     //胜利界面
     public void OnSuccess()
     {
+        LevelManager.Instance.SuccessImage.SetActive(true);
+
         Debug.Log("大吉大利，今晚吃鸡");
     }
 }
