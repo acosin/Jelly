@@ -26,7 +26,7 @@ public class MagicFly : MonoBehaviour {
                 Destroy(gameObject);
                 if(targetUnit.item)
                 {
-                    targetUnit.item.DestroyItem();
+                    targetUnit.OnHarm(1);
                 }
 
             }

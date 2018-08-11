@@ -32,6 +32,10 @@ public class Skill {
         {
             ret = "star_4";
         }
+        else if (6 == magicid)
+        {
+            ret = "star_5";
+        }
 
         return ret;
     }
@@ -62,13 +66,17 @@ public class SkillFactory
         {
             ret.magicid = 3;
         }
-        else if (ItemsTypes.BOMB == itemsTypes)
+        else if (ItemsTypes.PACKAGE == itemsTypes)
         {
             ret.magicid = 4;
         }
-        else if (ItemsTypes.INGREDIENT == itemsTypes)
+        else if (ItemsTypes.BOMB == itemsTypes)
         {
             ret.magicid = 5;
+        }
+        else if (ItemsTypes.INGREDIENT == itemsTypes)
+        {
+            ret.magicid = 6;
         }
 
         return ret;

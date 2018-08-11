@@ -60,6 +60,8 @@ public class BattleSystem :LSingleton<BattleSystem> {
                     SkillSystem.Instance.UseSkill(attack, defender, skill);
                 }
             }
+
+            EffectMgr.Instance.playSceneEffectByType(comb.nextType);
         }
 
         yield return new WaitForSeconds(0.5f);
