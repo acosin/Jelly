@@ -918,7 +918,7 @@ public class LevelManager : MonoBehaviour
         GenerateEnemySolider();
 #if true
         float scale = 0.4f;
-        Vector3 fieldPos = new Vector3(-3, maxRows * scale, -10);
+        Vector3 fieldPos = new Vector3(-3, 2.5f , -10);
         AnimateField(fieldPos);
 #else
         float offset = 0;
