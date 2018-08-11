@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class MagicFly : MonoBehaviour {
     public Vector3 targetPos;
     public Unit targetUnit;
@@ -37,6 +37,9 @@ public class MagicFly : MonoBehaviour {
                     target.y += 1;
                     Move move = damage.GetComponent<Move>();
                     move.target = target;
+
+                    TextMeshPro mesh = damage.GetComponent<TextMeshPro>();
+                    mesh.text = "-"  + harm.ToString();
                 }
 
             }
