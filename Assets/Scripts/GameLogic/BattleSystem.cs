@@ -49,6 +49,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
 
             foreach(Item item in comb.items)
             {
+                Debug.Log("ITEM.type = " + item.NextType);
                 Unit attack = item.square as Unit;
                 Unit defender = SelectAttackTarget();
                 if(defender)
