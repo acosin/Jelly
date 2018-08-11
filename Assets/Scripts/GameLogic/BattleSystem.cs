@@ -47,7 +47,9 @@ public class BattleSystem :LSingleton<BattleSystem> {
             //        }
             //}
 
-            foreach(Item item in comb.items)
+            Skill skill = SkillFactory.getSkillById(comb.nextType);
+
+            foreach (Item item in comb.items)
             {
                 Debug.Log("ITEM.type = " + item.NextType);
                 Unit attack = item.square as Unit;
@@ -55,7 +57,6 @@ public class BattleSystem :LSingleton<BattleSystem> {
                 if(defender)
                 {
                     //Skill skill = new Skill();
-                    Skill skill = SkillFactory.getSkillById(item.NextType);
                     SkillSystem.Instance.UseSkill(attack, defender, skill);
                 }
             }

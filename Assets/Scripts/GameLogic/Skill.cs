@@ -47,6 +47,9 @@ public class SkillFactory
         Skill ret = new Skill();
         ret.magicid = 1;
 
+        // Test
+        //itemsTypes = ItemsTypes.HORIZONTAL_STRIPPED;
+
         if (ItemsTypes.NONE == itemsTypes)
         {
             ret.magicid = 1;
