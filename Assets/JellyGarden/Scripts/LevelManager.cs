@@ -564,7 +564,7 @@ public class LevelManager : MonoBehaviour
                             item.transform.position = _item.transform.position;
                             item.transform.localScale = Vector3.one / 2f;
                             SpriteRenderer spr = item.AddComponent<SpriteRenderer>();
-                            spr.sprite = _item.GetComponent<Item>().items[_item.GetComponent<Item>().color];
+                            spr.sprite = _item.GetComponent<Item>().GetItemSprites()[_item.GetComponent<Item>().color];
                             spr.sortingLayerName = "UI";
                             spr.sortingOrder = 1;
                         }
