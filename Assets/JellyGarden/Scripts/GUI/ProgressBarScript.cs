@@ -17,8 +17,6 @@ public class ProgressBarScript : MonoBehaviour {
 
 	public void InitBar () {//2.1.2
 		ResetBar ();
-		PrepareStars ();
-
 	}
 
 	public void UpdateDisplay (float x) {
@@ -51,15 +49,5 @@ public class ProgressBarScript : MonoBehaviour {
 		UpdateDisplay (0.0f);
 	}
 
-	void PrepareStars () {
-		if (LevelManager.THIS != null) {
-			float width = GetComponent<RectTransform> ().rect.width;
-			stars [0].transform.localPosition = new Vector3 (LevelManager.Instance.star1 * 100 / LevelManager.Instance.star3 * width / 100 - (width / 2f), stars [0].transform.localPosition.y, 0);
-			stars [1].transform.localPosition = new Vector3 (LevelManager.Instance.star2 * 100 / LevelManager.Instance.star3 * width / 100 - (width / 2f), stars [1].transform.localPosition.y, 0);
-			stars [0].transform.GetChild (0).gameObject.SetActive (false);
-			stars [1].transform.GetChild (0).gameObject.SetActive (false);
-			stars [2].transform.GetChild (0).gameObject.SetActive (false);
-		}
-	}
 
 }

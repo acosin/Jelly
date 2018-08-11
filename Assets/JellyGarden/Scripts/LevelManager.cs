@@ -161,9 +161,6 @@ public class LevelManager : MonoBehaviour
     public bool showPopupScores;
 
     public GameObject stripesEffect;
-    public GameObject star1Anim;
-    public GameObject star2Anim;
-    public GameObject star3Anim;
     public GameObject snowParticle;
     public Color[] scoresColors;
     public Color[] scoresColorsOutline;
@@ -173,9 +170,6 @@ public class LevelManager : MonoBehaviour
     public CollectItems[] collectItems = new CollectItems[2];
     public Sprite[] ingrediendSprites;
     public string[] targetDiscriptions;
-    public GameObject ingrObject;
-    public GameObject blocksObject;
-    public GameObject scoreTargetObject;
     private bool matchesGot;
     bool ingredientFly;
     public GameObject[] gratzWords;
@@ -495,77 +489,8 @@ public class LevelManager : MonoBehaviour
             StopCoroutine(TimeTick());
             StartCoroutine(TimeTick());
         }
-        InitTargets();
         GameField.gameObject.SetActive(true);
 
-    }
-
-    void InitTargets()
-    {
-        blocksObject.SetActive(false);
-        ingrObject.SetActive(false);
-        scoreTargetObject.SetActive(false);
-        GameObject ingr1 = ingrObject.transform.Find("Ingr1").gameObject;
-        GameObject ingr2 = ingrObject.transform.Find("Ingr2").gameObject;
-
-        ingr1.SetActive(true);
-        ingr2.SetActive(true);
-        ingr1.GetComponent<RectTransform>().localPosition = new Vector3(-105.2f, ingr1.GetComponent<RectTransform>().localPosition.y, ingr1.GetComponent<RectTransform>().localPosition.z);
-        ingr2.GetComponent<RectTransform>().localPosition = new Vector3(33.5f, ingr2.GetComponent<RectTransform>().localPosition.y, ingr2.GetComponent<RectTransform>().localPosition.z);
-
-
-        if (ingrCountTarget[0] == 0 && ingrCountTarget[1] == 0)
-            ingrObject.SetActive(false);
-        else if (ingrCountTarget[0] > 0 || ingrCountTarget[1] > 0)
-        {
-            blocksObject.SetActive(false);
-            ingrObject.SetActive(true);
-            ingr1 = ingrObject.transform.Find("Ingr1").gameObject;
-            ingr2 = ingrObject.transform.Find("Ingr2").gameObject;
-            if (target == Target.INGREDIENT)
-            {
-                if (ingrCountTarget[0] > 0 && ingrCountTarget[1] > 0 && ingrTarget[0] == ingrTarget[1])
-                {
-                    ingrCountTarget[0] += ingrCountTarget[1];
-                    ingrCountTarget[1] = 0;
-                    ingrTarget[1] = Ingredients.None;
-                }
-                ingr1.GetComponent<Image>().sprite = ingrediendSprites[(int)ingrTarget[0]];
-                ingr2.GetComponent<Image>().sprite = ingrediendSprites[(int)ingrTarget[1]];
-            }
-            else if (target == Target.COLLECT)
-            {
-                if (ingrCountTarget[0] > 0 && ingrCountTarget[1] > 0 && collectItems[0] == collectItems[1])
-                {
-                    ingrCountTarget[0] += ingrCountTarget[1];
-                    ingrCountTarget[1] = 0;
-                    collectItems[1] = CollectItems.None;
-                }
-                ingr1.GetComponent<Image>().sprite = ingrediendSprites[(int)collectItems[0] + 2];
-                ingr2.GetComponent<Image>().sprite = ingrediendSprites[(int)collectItems[1] + 2];
-            }
-
-            if (ingrCountTarget[0] == 0 && ingrCountTarget[1] > 0)
-            {
-                ingr1.SetActive(false);
-                ingr2.GetComponent<RectTransform>().localPosition = new Vector3(0, ingr2.GetComponent<RectTransform>().localPosition.y, ingr2.GetComponent<RectTransform>().localPosition.z);
-            }
-            else if (ingrCountTarget[0] > 0 && ingrCountTarget[1] == 0)
-            {
-                ingr2.SetActive(false);
-                ingr1.GetComponent<RectTransform>().localPosition = new Vector3(0, ingr1.GetComponent<RectTransform>().localPosition.y, ingr1.GetComponent<RectTransform>().localPosition.z);
-            }
-        }
-        if (targetBlocks > 0)
-        {
-            blocksObject.SetActive(true);
-        }
-        else if (ingrCountTarget[0] == 0 && ingrCountTarget[1] == 0)
-        {
-            ingrObject.SetActive(false);
-            blocksObject.SetActive(false);
-            scoreTargetObject.SetActive(true);
-        }
     }
 
     void PrepareGame()
@@ -574,15 +499,6 @@ public class LevelManager : MonoBehaviour
         Score = 0;
         stars = 0;
         moveID = 0;
-
-
-        blocksObject.SetActive(false);
-        ingrObject.SetActive(false);
-        scoreTargetObject.SetActive(false);
-
-        star1Anim.SetActive(false);
-        star2Anim.SetActive(false);
-        star3Anim.SetActive(false);
 
         collectItems[0] = CollectItems.None;
         collectItems[1] = CollectItems.None;
@@ -651,8 +567,6 @@ public class LevelManager : MonoBehaviour
                             spr.sprite = _item.GetComponent<Item>().items[_item.GetComponent<Item>().color];
                             spr.sortingLayerName = "UI";
                             spr.sortingOrder = 1;
-
-                            StartCoroutine(StartAnimateIngredient(item, i));
                         }
                     }
                     else if (_item.GetComponent<Item>().currentType == ItemsTypes.INGREDIENT)
@@ -666,8 +580,6 @@ public class LevelManager : MonoBehaviour
                             spr.sprite = _item.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
                             spr.sortingLayerName = "UI";
                             spr.sortingOrder = 1;
-
-                            StartCoroutine(StartAnimateIngredient(item, i));
                         }
                     }
 
@@ -685,9 +597,6 @@ public class LevelManager : MonoBehaviour
                 spr.sprite = _item.GetComponent<SpriteRenderer>().sprite;
                 spr.sortingLayerName = "UI";
                 spr.sortingOrder = 1;
-
-                StartCoroutine(StartAnimateIngredient(item, 0));
-
             }
         }
 
@@ -719,40 +628,6 @@ public class LevelManager : MonoBehaviour
         //gm.SetActive(false);
     }
 
-    IEnumerator StartAnimateIngredient(GameObject item, int i)
-    {
-        if (ingrCountTarget[i] > 0)
-            ingrCountTarget[i]--;
-
-        ingredientFly = true;
-        GameObject[] ingr = new GameObject[2];
-        ingr[0] = ingrObject.transform.Find("Ingr1").gameObject;
-        ingr[1] = ingrObject.transform.Find("Ingr2").gameObject;
-        if (targetBlocks > 0)
-        {
-            ingr[0] = blocksObject.transform.gameObject;
-            ingr[1] = blocksObject.transform.gameObject;
-        }
-        AnimationCurve curveX = new AnimationCurve(new Keyframe(0, item.transform.localPosition.x), new Keyframe(0.4f, ingr[i].transform.position.x));
-        AnimationCurve curveY = new AnimationCurve(new Keyframe(0, item.transform.localPosition.y), new Keyframe(0.5f, ingr[i].transform.position.y));
-        curveY.AddKey(0.2f, item.transform.localPosition.y + UnityEngine.Random.Range(-2, 0.5f));
-        float startTime = Time.time;
-        Vector3 startPos = item.transform.localPosition;
-        float speed = UnityEngine.Random.Range(0.4f, 0.6f);
-        float distCovered = 0;
-        while (distCovered < 0.5f)
-        {
-            distCovered = (Time.time - startTime) * speed;
-            item.transform.localPosition = new Vector3(curveX.Evaluate(distCovered), curveY.Evaluate(distCovered), 0);
-            item.transform.Rotate(Vector3.back, Time.deltaTime * 1000);
-            yield return new WaitForFixedUpdate();
-        }
-        //     SoundBase.Instance.audio.PlayOneShot(SoundBase.Instance.getStarIngr);
-        Destroy(item);
-        if (gameStatus == GameState.Playing && !IsIngredientFalling())//1.6.1
-            CheckWinLose();
-        ingredientFly = false;
-    }
 
     public void CheckWinLose()
     {
@@ -2497,8 +2372,6 @@ public class LevelManager : MonoBehaviour
     public void PopupScore(int value, Vector3 pos, int color)
     {
         Score += value;
-        UpdateBar();
-        CheckStars();
         if (showPopupScores)
         {
             Transform parent = GameObject.Find("CanvasScore").transform;
@@ -2516,46 +2389,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void UpdateBar()
-    {
-        ProgressBarScript.Instance.UpdateDisplay((float)Score * 100f / ((float)star1 / ((star1 * 100f / star3)) * 100f) / 100f);
-
-    }
-
-    void CheckStars()
-    {
-        if (Score >= star1 && stars <= 0)
-        {
-            stars = 1;
-        }
-        if (Score >= star2 && stars <= 1)
-        {
-            stars = 2;
-        }
-        if (Score >= star3 && stars <= 2)
-        {
-            stars = 3;
-        }
-
-        if (Score >= star1)
-        {
-            if (!star1Anim.activeSelf)
-                SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.getStarIngr);
-            star1Anim.SetActive(true);
-        }
-        if (Score >= star2)
-        {
-            if (!star2Anim.activeSelf)
-                SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.getStarIngr);
-            star2Anim.SetActive(true);
-        }
-        if (Score >= star3)
-        {
-            if (!star3Anim.activeSelf)
-                SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.getStarIngr);
-            star3Anim.SetActive(true);
-        }
-    }
 
     public void LoadDataFromLocal(int currentLevel)
     {
