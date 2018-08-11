@@ -420,7 +420,9 @@ public class AnimationManager : MonoBehaviour
 	{
 		Time.timeScale = 1;
 		LevelManager.THIS.gameStatus = GameState.GameOver;
-		CloseMenu();
+        CloseMenu();
+        SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.click);
+        SceneManager.LoadScene("game");
 	}
 
 	public void Next()
