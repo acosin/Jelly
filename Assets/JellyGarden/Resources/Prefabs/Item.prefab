@@ -3,9 +3,9 @@
 --- !u!1 &190504
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 490504}
   - component: {fileID: 11490506}
@@ -21,9 +21,9 @@ GameObject:
 --- !u!1 &190506
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 490506}
   - component: {fileID: 21290506}
@@ -37,7 +37,7 @@ GameObject:
 --- !u!4 &490504
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -51,7 +51,7 @@ Transform:
 --- !u!4 &490506
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -64,7 +64,7 @@ Transform:
 --- !u!61 &6190506
 BoxCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190504}
   m_Enabled: 1
@@ -90,7 +90,7 @@ BoxCollider2D:
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190504}
   m_Enabled: 1
@@ -103,10 +103,11 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &11490506
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190504}
   m_Enabled: 1
@@ -121,6 +122,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 302e075b52d5dbb428c812c4fa0c4186, type: 3}
   - {fileID: 21300000, guid: f8bb0313bfa76b346a62a17d92c94b3d, type: 3}
   - {fileID: 21300000, guid: 3373b0cf251d9e04baa406fb813dbedf, type: 3}
+  items_enmey:
+  - {fileID: 21300000, guid: 06f78a09599704198a8a4565f84e1322, type: 3}
+  - {fileID: 21300000, guid: 814d36c9411f64c309b7df566c542c6c, type: 3}
+  - {fileID: 21300000, guid: 97d9179e0009b4c24ad0d3c20426a6af, type: 3}
+  - {fileID: 21300000, guid: 15a92608dd9ad4425b8ac5c773be84e8, type: 3}
+  - {fileID: 21300000, guid: 2f405b90dc4484c8da608d29f5fdbd03, type: 3}
+  - {fileID: 21300000, guid: 8a804563aee0c4725bd7115a489fbe04, type: 3}
   prefabs: []
   stripedItems:
   - horizontal: {fileID: 21300000, guid: ab4ddda7d92b01c4085d3ac1a497aa4b, type: 3}
@@ -167,15 +175,17 @@ MonoBehaviour:
 --- !u!212 &21290506
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190506}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -188,6 +198,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -204,6 +215,9 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -212,6 +226,6 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190504}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1

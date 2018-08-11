@@ -47,16 +47,21 @@ public class BattleSystem :LSingleton<BattleSystem> {
             //        }
             //}
 
-            foreach(Item item in comb.items)
+            Skill skill = SkillFactory.getSkillById(comb.nextType);
+
+            foreach (Item item in comb.items)
             {
+                Debug.Log("ITEM.type = " + item.NextType);
                 Unit attack = item.square as Unit;
                 Unit defender = SelectAttackTarget();
                 if(defender)
                 {
-                    Skill skill = new Skill();
+                    //Skill skill = new Skill();
                     SkillSystem.Instance.UseSkill(attack, defender, skill);
                 }
             }
+
+            EffectMgr.Instance.playSceneEffectByType(comb.nextType);
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -130,6 +135,8 @@ public class BattleSystem :LSingleton<BattleSystem> {
     //胜利界面
     public void OnSuccess()
     {
+        LevelManager.Instance.SuccessImage.SetActive(true);
+
         Debug.Log("大吉大利，今晚吃鸡");
     }
 }

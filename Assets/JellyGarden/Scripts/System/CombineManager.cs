@@ -60,7 +60,7 @@ public class CombineManager
 #else
         vChecking = false;
         //Horrizontal searching
-        for (int row = maxRows-1 ; row >= beginMineRow; row--)
+        for (int row = maxRows - 1; row >= beginMineRow; row--)
         {
             color = -1;
             for (int col = 0; col < maxCols; col++)
@@ -90,15 +90,16 @@ public class CombineManager
         }
 #endif
         //		Debug.Log (" test combines detected " + tempCombines.Count);
-        CheckCombines ();
-//		Debug.Log ("combines detected " + combines.Count);
-		//inspect combines
-		foreach (Combine cmb in combines) {
-//			Debug.Log ("h: " + cmb.hCount + " v: " + cmb.vCount);
-//			Debug.Log (cmb.items.Count);
-//			Debug.Log (cmb.nextType);
-
-			if (cmb.nextType != ItemsTypes.NONE) {
+        CheckCombines();
+        //		Debug.Log ("combines detected " + combines.Count);
+        //inspect combines
+        foreach (Combine cmb in combines)
+        {
+            //			Debug.Log ("h: " + cmb.hCount + " v: " + cmb.vCount);
+            //			Debug.Log (cmb.items.Count);
+            //			Debug.Log (cmb.nextType);
+#if OLD_LOGIC
+            if (cmb.nextType != ItemsTypes.NONE) {
 				Item item = cmb.items [UnityEngine.Random.Range (0, cmb.items.Count)];
 
 				Item draggedItem = LevelManager.THIS.lastDraggedItem;
@@ -115,6 +116,7 @@ public class CombineManager
 
 
 			}
+#endif
 			combinedItems.Add (cmb.items);			
 		}
 		return combinedItems;

@@ -6,6 +6,7 @@ public class SkillSystem : LSingleton<SkillSystem> {
 
     public void UseSkill(Unit attacker, Unit defender, Skill skill )
     {
-        MagicSytem.Instance.CreateMagic(attacker, defender, skill.magicid);
+        //MagicSytem.Instance.CreateMagicNew(attacker, defender, skill.magicid);
+        MagicSytem.Instance.CreateMagicNew(attacker, defender, skill);
     }
 }
