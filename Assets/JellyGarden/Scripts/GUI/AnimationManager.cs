@@ -228,8 +228,8 @@ public class AnimationManager : MonoBehaviour
 		{
 			CloseMenu();
 			LevelManager.THIS.gameStatus = GameState.WaitForPopup;
-
-		}
+            EffectMgr.Instance.initEnemyCenterEffect();
+        }
 		if (name == "PreFailed")
 		{
 			if (LevelManager.THIS.Limit <= 0)
