@@ -975,7 +975,8 @@ public class LevelManager : MonoBehaviour
             yOffset = 0.3f;
         Animation anim = GameField.GetComponent<Animation>();
         AnimationClip clip = new AnimationClip();
-        AnimationCurve curveX = new AnimationCurve(new Keyframe(0, pos.x + 15), new Keyframe(0.7f, pos.x - 0.2f), new Keyframe(0.8f, pos.x));
+        float xOffset = 15;
+        AnimationCurve curveX = new AnimationCurve(new Keyframe(0, pos.x + xOffset), new Keyframe(0.7f, pos.x - 0.2f), new Keyframe(0.8f, pos.x));
         AnimationCurve curveY = new AnimationCurve(new Keyframe(0, pos.y + yOffset), new Keyframe(1, pos.y + yOffset));
         //#if UNITY_5 || UNITY_2017 
         clip.legacy = true;
@@ -985,7 +986,7 @@ public class LevelManager : MonoBehaviour
         clip.AddEvent(new AnimationEvent() { time = 1, functionName = "EndAnimGamField" });
         anim.AddClip(clip, "appear");
         anim.Play("appear");
-        GameField.transform.position = new Vector2(pos.x + 0, pos.y + yOffset);
+        GameField.transform.position = new Vector2(pos.x + xOffset, pos.y + yOffset);
 
     }
 
