@@ -275,6 +275,12 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 8458959}
+--- !u!114 &11288320 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11416368, guid: acb13cf7f83bfd34ab58c92ae4926c80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1268009023}
+  m_Script: {fileID: 11500000, guid: fed4b15e8fca8f342b0ea9c706988080, type: 3}
 --- !u!1 &19996772
 GameObject:
   m_ObjectHideFlags: 0
@@ -14165,6 +14171,14 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -12.299999
       objectReference: {fileID: 0}
+    - target: {fileID: 11498564, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11288320}
+    - target: {fileID: 11498564, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Settings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
   m_IsPrefabParent: 0
@@ -15775,6 +15789,7 @@ GameObject:
   - component: {fileID: 1396928823}
   - component: {fileID: 1396928822}
   - component: {fileID: 1396928821}
+  - component: {fileID: 1396928824}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -15821,8 +15836,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.18836506, g: 0.9852941, b: 0.4906485, a: 1}
+    m_PressedColor: {r: 0.19128086, g: 0.9191176, b: 0.09461503, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -15839,7 +15854,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1396928822}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11288320}
+        m_MethodName: Success
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Success
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1396928822
@@ -15875,6 +15901,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1396928819}
+--- !u!114 &1396928824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396928819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed4b15e8fca8f342b0ea9c706988080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1403683479
 GameObject:
   m_ObjectHideFlags: 0

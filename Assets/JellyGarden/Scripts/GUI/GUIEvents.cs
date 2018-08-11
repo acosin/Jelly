@@ -34,6 +34,14 @@ public class GUIEvents : MonoBehaviour {
 
 	}
 
+    public void Success()
+    {
+        SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.click);
+
+        SceneManager.LoadScene("game");
+
+    }
+
 	public void FaceBookLogin () {
 #if FACEBOOK
 
