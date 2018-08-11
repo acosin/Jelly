@@ -182,6 +182,8 @@ public class LevelManager : MonoBehaviour
 
     public Target target;
 
+    public GameObject SuccessImage;
+
     public int TargetBlocks
     {
         get
@@ -476,6 +478,8 @@ public class LevelManager : MonoBehaviour
             // itemExplPool[i].SetActive(false);
         }
         passLevelCounter = 0;
+
+        SuccessImage.SetActive(false);
     }
 
     void InitLevel()
