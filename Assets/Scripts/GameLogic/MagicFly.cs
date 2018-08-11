@@ -26,7 +26,17 @@ public class MagicFly : MonoBehaviour {
                 Destroy(gameObject);
                 if(targetUnit.item)
                 {
-                    targetUnit.OnHarm(1);
+                    int harm = 1;
+                    targetUnit.OnHarm(harm);
+                    Object obj = Resources.Load("damage");
+                    GameObject damage = Object.Instantiate(obj) as GameObject;
+                    Vector3 postion = targetUnit.transform.position;
+                    postion.z += 1;
+                    damage.transform.position = position;
+                    Vector3 target = damage.transform.position;
+                    target.y += 1;
+                    Move move = damage.GetComponent<Move>();
+                    move.target = target;
                 }
 
             }
