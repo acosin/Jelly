@@ -6,7 +6,7 @@ using UnityEngine;
 */
 class EffectMgr : LSingleton<EffectMgr>
 {
-    protected Vector3 mEnemyCenterPos = Vector3.zero;
+    protected Vector3 mEnemyCenterPos = new Vector3(0.0f, 2.2f, -10);
 
     public void initEnemyCenterEffect()
     {
@@ -21,19 +21,22 @@ class EffectMgr : LSingleton<EffectMgr>
         //    }
         //}
 
-        Square square = LevelManager.THIS.GetSquare(LevelManager.THIS.maxCols / 2, LevelManager.THIS.maxRows / 2);
+        Square square = LevelManager.THIS.GetSquare(LevelManager.THIS.maxCols / 2, 1);
 
         if (square != null && square.item != null)
         {
-            this.mEnemyCenterPos = square.transform.position;
+            //this.mEnemyCenterPos = square.transform.position;
+            //Debug.Log("this.mEnemyCenterPos =" + this.mEnemyCenterPos);
         }
     }
 
     public void playSceneEffect()
     {
-        Object prefab = Resources.Load("star");
+        Object prefab = Resources.Load("Effect/Particle/Skill");
+        //Object prefab = Resources.Load("Star");
 
         GameObject instance = Object.Instantiate(prefab) as GameObject;
+        instance.name = "aaaaaaaa";
         instance.transform.parent = LevelManager.THIS.GameField;
         instance.transform.position = this.mEnemyCenterPos;
     }
