@@ -28,6 +28,7 @@ public class MagicFly : MonoBehaviour {
                 {
                     int harm = 1;
                     targetUnit.OnHarm(harm);
+#if false
                     Object obj = Resources.Load("damage");
                     GameObject damage = Object.Instantiate(obj) as GameObject;
                     Vector3 postion = targetUnit.transform.position;
@@ -40,6 +41,7 @@ public class MagicFly : MonoBehaviour {
 
                     TextMeshPro mesh = damage.GetComponent<TextMeshPro>();
                     mesh.text = "-"  + harm.ToString();
+#endif
                 }
 
             }

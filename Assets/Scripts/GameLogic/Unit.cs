@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Unit : Square, IMatchUnit,IBattleUnit {
     public int life = 3;
     public void OnHarm(int harm)
@@ -14,6 +14,19 @@ public class Unit : Square, IMatchUnit,IBattleUnit {
         {
             life -= harm;
         }
+
+        Object obj = Resources.Load("damage");
+        GameObject damage = Object.Instantiate(obj) as GameObject;
+        Vector3 position = transform.position;
+        position.z += 1;
+        damage.transform.position = position;
+        Vector3 target = damage.transform.position;
+        target.y += 1;
+        Move move = damage.GetComponent<Move>();
+        move.target = target;
+
+        TextMeshPro mesh = damage.GetComponent<TextMeshPro>();
+        mesh.text = "-" + harm.ToString();
     }
     public void playHit()
     {

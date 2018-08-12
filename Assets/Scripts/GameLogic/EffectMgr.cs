@@ -43,9 +43,38 @@ class EffectMgr : LSingleton<EffectMgr>
 
     public void playSceneEffectByType(ItemsTypes itemsTypes)
     {
-        if(ItemsTypes.HORIZONTAL_STRIPPED == itemsTypes)
+        if(ItemsTypes.HORIZONTAL_STRIPPED == itemsTypes ||
+            ItemsTypes.VERTICAL_STRIPPED == itemsTypes)
         {
-            //this.playSceneEffect();
+            this._hurtEnemy();
+            this.playSceneEffect();
+        }
+    }
+
+    protected void _hurtEnemy()
+    {
+        Unit leftUnit = null;
+        Unit rightUnit = null;
+        Unit unit = BattleSystem.Instance.SelectAttackTarget();
+
+        if(null != unit)
+        {
+            unit.OnHarm(1);
+            this.mEnemyCenterPos = unit.transform.position;
+
+            leftUnit = LevelManager.THIS.GetSquare(unit.col - 1, unit.row) as Unit;
+
+            if(null != leftUnit)
+            {
+                leftUnit.OnHarm(1);
+            }
+
+            rightUnit = LevelManager.THIS.GetSquare(unit.col + 1, unit.row) as Unit;
+
+            if (null != rightUnit)
+            {
+                rightUnit.OnHarm(1);
+            }
         }
     }
 }

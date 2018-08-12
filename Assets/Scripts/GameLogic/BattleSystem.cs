@@ -49,20 +49,31 @@ public class BattleSystem :LSingleton<BattleSystem> {
             //        }
             //}
 
-            Skill skill = SkillFactory.getSkillById(comb.nextType);
-
-            foreach (Item item in comb.items)
+            //if (ItemsTypes.HORIZONTAL_STRIPPED != comb.nextType &&
+            //    ItemsTypes.VERTICAL_STRIPPED != comb.nextType)
             {
-                Debug.Log("ITEM.type = " + item.NextType);
-                Unit attack = item.square as Unit;
-                Unit defender = SelectAttackTarget();
-                if(defender)
+                Skill skill = SkillFactory.getSkillById(comb.nextType);
+
+                foreach (Item item in comb.items)
                 {
-                    //Skill skill = new Skill();
-                    SkillSystem.Instance.UseSkill(attack, defender, skill);
+                    Debug.Log("ITEM.type = " + item.NextType);
+                    Unit attack = item.square as Unit;
+                    Unit defender = SelectAttackTarget();
+                    if (defender)
+                    {
+                        //Skill skill = new Skill();
+                        SkillSystem.Instance.UseSkill(attack, defender, skill);
+                    }
                 }
             }
-            if(!magic_music)
+            //else
+            //{
+                //EffectMgr.Instance.playSceneEffectByType(comb.nextType);
+            //}
+
+            //EffectMgr.Instance.playSceneEffectByType(comb.nextType);
+
+            if (!magic_music)
             {
                 magic_music = GameObject.Find("magic_music").GetComponent<AudioSource>();
             }
@@ -72,8 +83,6 @@ public class BattleSystem :LSingleton<BattleSystem> {
                 magic_music.loop = false;
                 magic_music.Play();
             }
-            
-            EffectMgr.Instance.playSceneEffectByType(comb.nextType);
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -87,7 +96,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
     }
 
 
-    Unit SelectAttackTarget()
+    public Unit SelectAttackTarget()
     {
         Unit unit = null;
         int count = 0;

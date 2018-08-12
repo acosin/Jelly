@@ -45,16 +45,22 @@ public class GUIEvents : MonoBehaviour {
     public void SkillOne()
     {
         Debug.Log("技能1释放");
+
+        EffectMgr.Instance.playSceneEffectByType(ItemsTypes.HORIZONTAL_STRIPPED);
     }
 
     public void SkillTwo()
     {
         Debug.Log("技能2释放");
+
+        EffectMgr.Instance.playSceneEffectByType(ItemsTypes.VERTICAL_STRIPPED);
     }
 
     public void SkillThree()
     {
         Debug.Log("技能3释放");
+
+        EffectMgr.Instance.playSceneEffectByType(ItemsTypes.HORIZONTAL_STRIPPED);
     }
 
     public void FaceBookLogin () {
