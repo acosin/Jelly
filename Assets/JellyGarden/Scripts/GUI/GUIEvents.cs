@@ -42,7 +42,22 @@ public class GUIEvents : MonoBehaviour {
 
     }
 
-	public void FaceBookLogin () {
+    public void SkillOne()
+    {
+        Debug.Log("技能1释放");
+    }
+
+    public void SkillTwo()
+    {
+        Debug.Log("技能2释放");
+    }
+
+    public void SkillThree()
+    {
+        Debug.Log("技能3释放");
+    }
+
+    public void FaceBookLogin () {
 #if FACEBOOK
 
 		FacebookManager.THIS.CallFBLogin ();
