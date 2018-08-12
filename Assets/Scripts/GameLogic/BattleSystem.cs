@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BattleSystem :LSingleton<BattleSystem> {
     float intervalCheckWave;
+    public AudioSource magic_music;
+
     public IEnumerator onCombine(List<Combine> combines)
     {
         //处理玩法逻辑
@@ -60,7 +62,17 @@ public class BattleSystem :LSingleton<BattleSystem> {
                     SkillSystem.Instance.UseSkill(attack, defender, skill);
                 }
             }
-
+            if(!magic_music)
+            {
+                magic_music = GameObject.Find("magic_music").GetComponent<AudioSource>();
+            }
+            if(magic_music)
+            {
+                magic_music.Stop();
+                magic_music.loop = false;
+                magic_music.Play();
+            }
+            
             EffectMgr.Instance.playSceneEffectByType(comb.nextType);
         }
 

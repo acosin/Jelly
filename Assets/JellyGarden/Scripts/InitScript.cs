@@ -197,8 +197,8 @@ public class InitScript : MonoBehaviour
 		rate.GetComponent<RectTransform>().anchoredPosition = (Resources.Load("Prefabs/Rate") as GameObject).GetComponent<RectTransform>().anchoredPosition;
 		rate.transform.localScale = Vector3.one;
 
-		GameObject.Find("Music").GetComponent<AudioSource>().volume = PlayerPrefs.GetInt("Music");
-		SoundBase.Instance.GetComponent<AudioSource>().volume = PlayerPrefs.GetInt("Sound");
+		GameObject.Find("Music").GetComponent<AudioSource>().volume = 1;//PlayerPrefs.GetInt("Music");
+		SoundBase.Instance.GetComponent<AudioSource>().volume = 1;// PlayerPrefs.GetInt("Sound");
 
 #if UNITY_ADS//2.1.1
 		enableUnityAds = true;

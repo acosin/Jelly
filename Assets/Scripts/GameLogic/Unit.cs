@@ -8,7 +8,7 @@ public class Unit : Square, IMatchUnit,IBattleUnit {
     {
         if(harm >= life)
         {
-            item.DestroyItem();
+            item.DestroyItem(false, "2222", true);
         }
         else
         {
