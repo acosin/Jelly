@@ -59,21 +59,22 @@ class EffectMgr : LSingleton<EffectMgr>
 
         if(null != unit)
         {
-            unit.OnHarm(1);
+            int harm = 7;
+            unit.OnHarm(harm);
             this.mEnemyCenterPos = unit.transform.position;
 
             leftUnit = LevelManager.THIS.GetSquare(unit.col - 1, unit.row) as Unit;
 
             if(null != leftUnit)
             {
-                leftUnit.OnHarm(1);
+                leftUnit.OnHarm(harm);
             }
 
             rightUnit = LevelManager.THIS.GetSquare(unit.col + 1, unit.row) as Unit;
 
             if (null != rightUnit)
             {
-                rightUnit.OnHarm(1);
+                rightUnit.OnHarm(harm);
             }
         }
     }
