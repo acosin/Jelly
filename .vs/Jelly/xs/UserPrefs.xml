@@ -6,11 +6,12 @@
       <File FileName="Assets/JellyGarden/Scripts/LevelManager.cs" Line="915" Column="9" />
       <File FileName="Assets/Scripts/GameLogic/SkillSystem.cs" Line="10" Column="40" />
       <File FileName="Assets/Scripts/GameLogic/MagicSytem.cs" Line="29" Column="15" />
-      <File FileName="Assets/Scripts/GameLogic/MagicFly.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameLogic/MagicFly.cs" Line="43" Column="30" />
       <File FileName="../../../Library/Unity/cache/packages/packages.unity.com/com.unity.textmeshpro@1.2.4/Scripts/Runtime/TextMeshPro.cs" Line="7" Column="16" />
       <File FileName="Assets/JellyGarden/Scripts/Item.cs" Line="353" Column="27" />
-      <File FileName="Assets/Scripts/GameLogic/Unit.cs" Line="33" Column="9" />
-      <File FileName="Assets/Scripts/GameLogic/EffectMgr.cs" Line="62" Column="27" />
+      <File FileName="Assets/Scripts/GameLogic/Unit.cs" Line="7" Column="21" />
+      <File FileName="Assets/JellyGarden/Scripts/GUI/AnimationManager.cs" Line="240" Column="13" />
+      <File FileName="Assets/Scripts/GameLogic/EffectMgr.cs" Line="63" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
