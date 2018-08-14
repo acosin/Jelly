@@ -915,7 +915,7 @@ public class LevelManager : MonoBehaviour
 
         GenerateMineSolider();
         GenerateSpace();
-        GenerateEnemySolider();
+        EnemyManager.Instance.GenerateEnemySolider();
 #if true
         float scale = 0.4f;
         Vector3 fieldPos = new Vector3(-3, 2.5f , -10);
@@ -953,21 +953,7 @@ public class LevelManager : MonoBehaviour
 
         }
     }
-    void GenerateEnemySolider()
-    {
-        bool chessColor = false;
-        for (int row = 0; row < opponentRows; row++)
-        {
-            if (maxCols % 2 == 0)
-                chessColor = !chessColor;
-            for (int col = 0; col < maxCols; col++)
-            {
-                CreateSquare(col, row, chessColor);
-                chessColor = !chessColor;
-            }
 
-        }
-    }
     void GenerateSpace()
     {
         bool chessColor = false;
@@ -1006,7 +992,7 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    void CreateSquare(int col, int row, bool chessColor = false)
+    public void CreateSquare(int col, int row, bool chessColor = false)
     {
         GameObject square = null;
         square = Instantiate(squarePrefab, firstSquarePosition + new Vector2(col * squareWidth, -row * squareHeight), Quaternion.identity) as GameObject;
@@ -1340,26 +1326,7 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-    //生成敌人
-    public void GenerateNewEnemys(bool falling = true)
-    {
-        for (int col = 0; col < maxCols; col++)
-        {
-            for (int row = 0; row < opponentRows; row++)
-            {
-                if (GetSquare(col, row) != null)
-                {
-                    if (!GetSquare(col, row).IsNone() && GetSquare(col, row).CanGoInto() && GetSquare(col, row).item == null)
-                    {
-                        if ((GetSquare(col, row).item == null && !GetSquare(col, row).IsHaveSolidAbove()) || !falling)
-                        {
-                            GetSquare(col, row).GenItem(falling);
-                        }
-                    }
-                }
-            }
-        }
-    }
+
     //生成士兵
     void GenerateNewItems(bool falling = true)
     {
@@ -1444,7 +1411,7 @@ public class LevelManager : MonoBehaviour
         if (!onlyFalling)
         {
             GenerateNewItems(false);
-            GenerateNewEnemys(false);
+            EnemyManager.Instance.GenerateNewEnemys(false);
         }
         else
             LevelManager.THIS.onlyFalling = true;
@@ -1730,24 +1697,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void fallingDownEnemy()
-    {
-        //falling down solider
-        int beginMineRow = 0;
-
-        for (int i = 0; i < 20; i++)
-        {   //just for testing
-            for (int col = 0; col < maxCols; col++)
-            {
-                for (int row = opponentRows - 1; row >= beginMineRow; row--)
-                {   //need to enumerate rows from bottom to top
-                    if (GetSquare(col, row) != null)
-                        GetSquare(col, row).FallOut();
-                }
-            }
-            // yield return new WaitForFixedUpdate();
-        }
-    }
     IEnumerator FallingDown()
     {
         bool nearEmptySquareDetected = false;
@@ -2098,7 +2047,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!safe)
         {
-            if (row >= maxRows || col >= maxCols)
+            if (row >= maxRows || col >= maxCols || row<0 || col<0)
                 return null;
             return squaresArray[row * maxCols + col];
         }
@@ -2301,20 +2250,7 @@ public class LevelManager : MonoBehaviour
         return itemsList;
     }
 
-    public List<Item> GetEnemyItems()
-    {
-        List<Item> itemsList = new List<Item>();
-        for (int row = 0; row < opponentRows; row++)
-        {
-            for (int col = 0; col < maxCols; col++)
-            {
-                Square square = GetSquare(col, row);
-                if (square != null && square.item != null)
-                    itemsList.Add(square.item);
-            }
-        }
-        return itemsList;
-    }
+
     public void SetTypeByColor(int p, ItemsTypes nextType)
     {
         GameObject[] items = GameObject.FindGameObjectsWithTag("Item");

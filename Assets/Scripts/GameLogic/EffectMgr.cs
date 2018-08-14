@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
 /**
 * @brief 特效数据
 */
@@ -11,7 +10,7 @@ class EffectMgr : LSingleton<EffectMgr>
     public void initEnemyCenterEffect()
     {
         Unit unit = null;
-        List<Item> enemys = LevelManager.THIS.GetEnemyItems();
+        List<Item> enemys = EnemyManager.Instance.GetEnemyItems();
 
         //for (int row = 0; row < LevelManager.THIS.maxRows; row++)
         //{
@@ -21,7 +20,7 @@ class EffectMgr : LSingleton<EffectMgr>
         //    }
         //}
 
-        Square square = LevelManager.THIS.GetSquare(LevelManager.THIS.maxCols / 2, 1);
+        Square square = LevelManager.Instance.GetSquare(LevelManager.THIS.maxCols / 2, 1);
 
         if (square != null && square.item != null)
         {
@@ -56,7 +55,7 @@ class EffectMgr : LSingleton<EffectMgr>
         Unit leftUnit = null;
         Unit rightUnit = null;
         Unit unit = BattleSystem.Instance.SelectAttackTarget();
-
+        Debug.Log("col = " + unit.col + "; row= " + unit.row);
         if(null != unit)
         {
             int harm = 7;

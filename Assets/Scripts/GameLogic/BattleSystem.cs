@@ -100,7 +100,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
     {
         Unit unit = null;
         int count = 0;
-        List<Item> enemys = LevelManager.THIS.GetEnemyItems();
+        List<Item> enemys = EnemyManager.Instance.GetEnemyItems();
         if(enemys.Count > 0)
         {
             while (count++ < 100)
@@ -136,7 +136,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
             {
                 //为避免两拨怪间隔时间过短，一次消除会攻击下一波怪的情形，增加刷新间隔，每隔2秒检查一次
                 //判断是否需要刷新下一轮怪物
-                if (LevelManager.Instance.GetEnemyItems().Count == 0 && GameData.Instance.levelinit)
+                if (EnemyManager.Instance.GetEnemyItems().Count == 0 && GameData.Instance.levelinit)
                 {
                     if (++GameData.Instance.levelData.currentWave > 3)
                     {
@@ -146,7 +146,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
                     }
                     Debug.Log("GameData.Instance.levelData.currentWave = " + GameData.Instance.levelData.currentWave);
                     //刷新下一轮怪物
-                    LevelManager.Instance.GenerateNewEnemys(false);
+                    EnemyManager.Instance.GenerateNewEnemys(false);
                     GameData.Instance.levelData.currentWave++;
                 }
             }
