@@ -81,9 +81,9 @@ public class Item : MonoBehaviour
     private float yScale;
     public bool boost;
     public Vector2 moveDirection;
-    public Sprite[]GetItemSprites()
+    public Sprite[] GetItemSprites()
     {
-        if(square.row < LevelManager.THIS.opponentRows)
+        if (square.row < LevelManager.THIS.opponentRows)
         {
             return items_enmey;
         }
@@ -600,7 +600,7 @@ public class Item : MonoBehaviour
             item2.DestroyPackage();
         }
     }
-    #endif
+#endif
     public void CheckChocoBomb(Item item1, Item item2)
     {
         if (item1.currentType == ItemsTypes.INGREDIENT || item2.currentType == ItemsTypes.INGREDIENT)
@@ -799,6 +799,7 @@ public class Item : MonoBehaviour
 
     public void ChangeType()
     {
+        return;
         if (this != null)
             StartCoroutine(ChangeTypeCor());
     }
@@ -959,7 +960,7 @@ public class Item : MonoBehaviour
 			DestroyPackage();
 		else if (currentType == ItemsTypes.BOMB && LevelManager.THIS.gameStatus == GameState.PreWinAnimations)
 			CheckChocoBomb(this, LevelManager.THIS.GetRandomItems(1)[0]);
-#endif
+
 		if (NextType != ItemsTypes.NONE)
 		{
 			Item i = square.GenItem();
@@ -967,7 +968,7 @@ public class Item : MonoBehaviour
 			i.SetColor(color);
 			i.ChangeType();
 		}
-
+#endif
 		if (destroying)
 		{
 			Destroy(gameObject);

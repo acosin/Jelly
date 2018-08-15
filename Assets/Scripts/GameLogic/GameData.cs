@@ -23,9 +23,9 @@ public class GameData : LSingleton<GameData>
         if(null == levelData)
         {
             levelData = new LevelData();
-            levelData.init();
-        }
 
+        }
+        levelData.init();
         levelinit = true;
     }
 
