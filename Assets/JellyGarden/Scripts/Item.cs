@@ -662,7 +662,7 @@ public class Item : MonoBehaviour
 
     IEnumerator FallingCor(Square _square, bool animate)
     {
-        if (square.row > LevelManager.THIS.opponentRows)
+        // if (square.row > LevelManager.THIS.opponentRows)
         {
             falling = true;
             float startTime = Time.time;

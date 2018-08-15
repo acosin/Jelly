@@ -127,6 +127,10 @@ public class BattleSystem :LSingleton<BattleSystem> {
 
     public void Update()
     {
+        if(GameData.Instance.levelData!=null && GameData.Instance.levelData.isEndLevel)
+        {
+            return;
+        }
         intervalCheckWave += Time.deltaTime;
         if(intervalCheckWave > 2)
         {
@@ -146,7 +150,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
                     }
                     Debug.Log("GameData.Instance.levelData.currentWave = " + GameData.Instance.levelData.currentWave);
                     //刷新下一轮怪物
-                    EnemyManager.Instance.GenerateNewEnemys(false);
+                    EnemyManager.Instance.GenerateNewEnemys(true);
                     GameData.Instance.levelData.currentWave++;
                 }
             }
@@ -157,7 +161,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
     public void OnSuccess()
     {
         LevelManager.Instance.SuccessImage.SetActive(true);
-
+        GameData.Instance.levelData.isEndLevel = true;
         Debug.Log("大吉大利，今晚吃鸡");
     }
 }

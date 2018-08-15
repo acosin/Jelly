@@ -5,10 +5,11 @@ using UnityEngine;
 public class LevelData
 {
     public int currentWave;
-
+    public bool isEndLevel;
     public void init()
     {
         currentWave = 0;
+        isEndLevel = false;
     }
 }
 

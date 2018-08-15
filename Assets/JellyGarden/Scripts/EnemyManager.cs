@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyManager : LSingleton<EnemyManager> {
 
-
-
     /// <summary>
     /// Gets the square. Return square by row and column
     /// </summary>

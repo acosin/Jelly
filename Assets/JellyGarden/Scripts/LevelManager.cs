@@ -486,9 +486,6 @@ public class LevelManager : MonoBehaviour
     {
 
         GenerateLevel();
-#if OLD_LOGIC
-        GenerateOutline();
-#endif
         ReGenLevel();
         if (limitType == LIMIT.TIME)
         {
@@ -1062,222 +1059,7 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-#if OLD_LOGIC
-    void GenerateOutline()
-    {
-        int row = 0;
-        int col = 0;
-        for (row = 0; row < maxRows; row++)
-        { //down
-            SetOutline(col, row, 0);
-        }
-        row = maxRows - 1;
-        for (col = 0; col < maxCols; col++)
-        { //right
-            SetOutline(col, row, 90);
-        }
-        col = maxCols - 1;
-        for (row = maxRows - 1; row >= 0; row--)
-        { //up
-            SetOutline(col, row, 180);
-        }
-        row = 0;
-        for (col = maxCols - 1; col >= 0; col--)
-        { //left
-            SetOutline(col, row, 270);
-        }
-        col = 0;
-        for (row = 1; row < maxRows - 1; row++)
-        {
-            for (col = 1; col < maxCols - 1; col++)
-            {
-                //  if (GetSquare(col, row).type == SquareTypes.NONE)
-                SetOutline(col, row, 0);
-            }
-        }
-    }
 
-
-    void SetOutline(int col, int row, float zRot)
-    {
-        Square square = GetSquare(col, row, true);
-        if (!square)
-        {
-            return;
-        }
-        if (square.type != SquareTypes.NONE)
-        {
-            if (row == 0 || col == 0 || col == maxCols - 1 || row == maxRows - 1)
-            {
-                GameObject outline = CreateOutline(square);
-                SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                outline.transform.localRotation = Quaternion.Euler(0, 0, zRot);
-                if (zRot == 0)
-                    outline.transform.localPosition = Vector3.zero + Vector3.left * 0.425f;
-                if (zRot == 90)
-                    outline.transform.localPosition = Vector3.zero + Vector3.down * 0.425f;
-                if (zRot == 180)
-                    outline.transform.localPosition = Vector3.zero + Vector3.right * 0.425f;
-                if (zRot == 270)
-                    outline.transform.localPosition = Vector3.zero + Vector3.up * 0.425f;
-                if (row == 0 && col == 0)
-                {   //top left
-                    spr.sprite = outline3;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 180);
-                    outline.transform.localPosition = Vector3.zero + Vector3.left * 0.015f + Vector3.up * 0.015f;
-                }
-                if (row == 0 && col == maxCols - 1)
-                {   //top right
-                    spr.sprite = outline3;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                    outline.transform.localPosition = Vector3.zero + Vector3.right * 0.015f + Vector3.up * 0.015f;
-                }
-                if (row == maxRows - 1 && col == 0)
-                {   //bottom left
-                    spr.sprite = outline3;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, -90);
-                    outline.transform.localPosition = Vector3.zero + Vector3.left * 0.015f + Vector3.down * 0.015f;
-                }
-                if (row == maxRows - 1 && col == maxCols - 1)
-                {   //bottom right
-                    spr.sprite = outline3;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                    outline.transform.localPosition = Vector3.zero + Vector3.right * 0.015f + Vector3.down * 0.015f;
-                }
-            }
-            else
-            {
-                //top left
-                if (GetSquare(col - 1, row - 1, true).type == SquareTypes.NONE && GetSquare(col, row - 1, true).type == SquareTypes.NONE && GetSquare(col - 1, row, true).type == SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    spr.sprite = outline3;
-                    outline.transform.localPosition = Vector3.zero + Vector3.left * 0.015f + Vector3.up * 0.015f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 180);
-                }
-                //top right
-                if (GetSquare(col + 1, row - 1, true).type == SquareTypes.NONE && GetSquare(col, row - 1, true).type == SquareTypes.NONE && GetSquare(col + 1, row, true).type == SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    spr.sprite = outline3;
-                    outline.transform.localPosition = Vector3.zero + Vector3.right * 0.015f + Vector3.up * 0.015f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                }
-                //bottom left
-                if (GetSquare(col - 1, row + 1, true).type == SquareTypes.NONE && GetSquare(col, row + 1, true).type == SquareTypes.NONE && GetSquare(col - 1, row, true).type == SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    spr.sprite = outline3;
-                    outline.transform.localPosition = Vector3.zero + Vector3.left * 0.015f + Vector3.down * 0.015f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 270);
-                }
-                //bottom right
-                if (GetSquare(col + 1, row + 1, true).type == SquareTypes.NONE && GetSquare(col, row + 1, true).type == SquareTypes.NONE && GetSquare(col + 1, row, true).type == SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    spr.sprite = outline3;
-                    outline.transform.localPosition = Vector3.zero + Vector3.right * 0.015f + Vector3.down * 0.015f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                }
-
-
-            }
-        }
-        else
-        {
-            bool corner = false;
-            if (GetSquare(col - 1, row, true).type != SquareTypes.NONE && GetSquare(col, row - 1, true).type != SquareTypes.NONE)
-            {
-                GameObject outline = CreateOutline(square);
-                SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                spr.sprite = outline2;
-                outline.transform.localPosition = Vector3.zero;
-                outline.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                corner = true;
-            }
-            if (GetSquare(col + 1, row, true).type != SquareTypes.NONE && GetSquare(col, row + 1, true).type != SquareTypes.NONE)
-            {
-                GameObject outline = CreateOutline(square);
-                SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                spr.sprite = outline2;
-                outline.transform.localPosition = Vector3.zero;
-                outline.transform.localRotation = Quaternion.Euler(0, 0, 180);
-                corner = true;
-            }
-            if (GetSquare(col + 1, row, true).type != SquareTypes.NONE && GetSquare(col, row - 1, true).type != SquareTypes.NONE)
-            {
-                GameObject outline = CreateOutline(square);
-                SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                spr.sprite = outline2;
-                outline.transform.localPosition = Vector3.zero;
-                outline.transform.localRotation = Quaternion.Euler(0, 0, 270);
-                corner = true;
-            }
-            if (GetSquare(col - 1, row, true).type != SquareTypes.NONE && GetSquare(col, row + 1, true).type != SquareTypes.NONE)
-            {
-                GameObject outline = CreateOutline(square);
-                SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                spr.sprite = outline2;
-                outline.transform.localPosition = Vector3.zero;
-                outline.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                corner = true;
-            }
-
-
-            if (!corner)
-            {
-                if (GetSquare(col, row - 1, true).type != SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    outline.transform.localPosition = Vector3.zero + Vector3.up * 0.395f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                }
-                if (GetSquare(col, row + 1, true).type != SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    outline.transform.localPosition = Vector3.zero + Vector3.down * 0.395f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                }
-                if (GetSquare(col - 1, row, true).type != SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    outline.transform.localPosition = Vector3.zero + Vector3.left * 0.395f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                }
-                if (GetSquare(col + 1, row, true).type != SquareTypes.NONE)
-                {
-                    GameObject outline = CreateOutline(square);
-                    SpriteRenderer spr = outline.GetComponent<SpriteRenderer>();
-                    outline.transform.localPosition = Vector3.zero + Vector3.right * 0.395f;
-                    outline.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                }
-            }
-        }
-        //Vector3 pos = GameField.transform.TransformPoint((Vector3)firstSquarePosition + new Vector3(col * squareWidth - squareWidth / 2, -row * squareHeight, 10));
-        //line.SetVertexCount(linePoint + 1);
-        //line.SetPosition(linePoint++, pos);
-
-    }
-
-    GameObject CreateOutline(Square square)
-    {
-        GameObject outline = new GameObject();
-        outline.name = "outline";
-        outline.transform.SetParent(square.transform);
-        outline.transform.localPosition = Vector3.zero;
-        SpriteRenderer spr = outline.AddComponent<SpriteRenderer>();
-        spr.sprite = outline1;
-        spr.sortingOrder = 1;
-        return outline;
-    }
-#endif
     void CreateObstacles(int col, int row, GameObject square, SquareTypes type)
     {
         if ((levelSquaresFile[row * maxCols + col].obstacle == SquareTypes.WIREBLOCK && type == SquareTypes.NONE) || type == SquareTypes.WIREBLOCK)
@@ -1330,24 +1112,6 @@ public class LevelManager : MonoBehaviour
     //生成士兵
     void GenerateNewItems(bool falling = true)
     {
-#if OLD_LOGIC
-        for (int col = 0; col < maxCols; col++)
-        {
-            for (int row = maxRows - 1; row >= 0; row--)
-            {
-                if (GetSquare(col, row) != null)
-                {
-                    if (!GetSquare(col, row).IsNone() && GetSquare(col, row).CanGoInto() && GetSquare(col, row).item == null)
-                    {
-                        if ((GetSquare(col, row).item == null && !GetSquare(col, row).IsHaveSolidAbove()) || !falling)
-                        {
-                            GetSquare(col, row).GenItem(falling);
-                        }
-                    }
-                }
-            }
-        }
-#else
         int beginMineRow = LevelManager.THIS.opponentRows + LevelManager.THIS.spaceRows;
         //beginMineRow = 0;
         for (int col = 0; col < maxCols; col++)
@@ -1366,7 +1130,6 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
-#endif
     }
     public void NoMatches()
     {
@@ -1738,48 +1501,9 @@ public class LevelManager : MonoBehaviour
                                                               //				lastSwitchedItem.ChangeType ();
                                                               //
                                                               //			}
-#if OLD_LOGIC
-            if (combinedItems.Count > 0)
-                combo++;
 
-            foreach (List<Item> desrtoyItems in combinedItems)
-            {
-
-                //				if (lastDraggedItem == null) {  //1.6
-                //					if (desrtoyItems.Count == 4) {
-                //						if (lastDraggedItem == null)
-                //							lastDraggedItem = desrtoyItems [UnityEngine.Random.Range (0, desrtoyItems.Count)];
-                //						lastDraggedItem.NextType = (ItemsTypes)UnityEngine.Random.Range (1, 3);
-                //						//lastDraggedItem.ChangeType();
-                //					}
-                //					if (desrtoyItems.Count >= 5) {
-                //						if (lastDraggedItem == null)
-                //							lastDraggedItem = desrtoyItems [UnityEngine.Random.Range (0, desrtoyItems.Count)];
-                //						lastDraggedItem.NextType = ItemsTypes.BOMB;
-                //						//lastDraggedItem.ChangeType();
-                //					}
-                //
-                //				}
-                // if (desrtoyItems.Count > 0) PopupScore(scoreForItem * desrtoyItems.Count, desrtoyItems[(int)desrtoyItems.Count / 2].transform.position, Color.black);
-                foreach (Item item in desrtoyItems)
-                {//TODO items not destroy
-
-                    if (item.currentType != ItemsTypes.NONE)
-                        yield return new WaitForSeconds(0.1f);
-                    item.DestroyItem(true);  //destroy items safely
-                    if (item.currentType != ItemsTypes.NONE)
-                    {
-                        //while (!item.animationFinished)
-                        //{
-                        //    yield return new WaitForFixedUpdate();
-                        //}
-                    }
-
-                }
-            }
-#else
             yield return StartCoroutine(BattleSystem.Instance.onCombine(combineManager.GetCombines()));
-#endif
+
             foreach (Item item in destroyAnyway)
             {
                 //  if(item.sprRenderer.enabled)
@@ -1821,7 +1545,7 @@ public class LevelManager : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
 
             CheckIngredient();
-#if OLD_LOGIC
+#if OLD_LOGIC||true
             for (int col = 0; col < maxCols; col++)
             {
                 for (int row = maxRows - 1; row >= 0; row--)

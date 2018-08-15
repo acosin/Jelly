@@ -55,7 +55,7 @@ class EffectMgr : LSingleton<EffectMgr>
         Unit leftUnit = null;
         Unit rightUnit = null;
         Unit unit = BattleSystem.Instance.SelectAttackTarget();
-        Debug.Log("col = " + unit.col + "; row= " + unit.row);
+        // Debug.Log("col = " + unit.col + "; row= " + unit.row);
         if(null != unit)
         {
             int harm = 7;
