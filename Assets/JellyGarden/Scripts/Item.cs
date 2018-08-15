@@ -656,6 +656,12 @@ public class Item : MonoBehaviour
 
     public void StartFalling()
     {
+        if (square.row < LevelManager.THIS.opponentRows)
+        {
+            int j = 100;
+            Debug.Log(j);
+        }
+
         if (!falling)
             StartCoroutine(FallingCor(square, true));
     }

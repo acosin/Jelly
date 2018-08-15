@@ -1545,7 +1545,7 @@ public class LevelManager : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
 
             CheckIngredient();
-#if OLD_LOGIC||true
+#if OLD_LOGIC
             for (int col = 0; col < maxCols; col++)
             {
                 for (int row = maxRows - 1; row >= 0; row--)
@@ -1602,26 +1602,7 @@ public class LevelManager : MonoBehaviour
             //detect near empty squares to fall into
             nearEmptySquareDetected = false;
 
-            for (int col = 0; col < maxCols; col++)
-            {
-                for (int row = maxRows - 1; row >= 0; row--)
-                {
-                    if (GetSquare(col, row) != null)
-                    {
-                        if (!GetSquare(col, row).IsNone())
-                        {
-                            if (GetSquare(col, row).item != null)
-                            {
-                                if (GetSquare(col, row).item.GetNearEmptySquares())
-                                    nearEmptySquareDetected = true;
-
-                            }
-                        }
-                    }
-                    // if (nearEmptySquareDetected) break;
-                }
-                //   if (nearEmptySquareDetected) break;
-            }
+            nearEmptySquareDetected = FallingDownSoliders();
             //StartCoroutine(GetMatchesCor());
             //while (!matchesGot)
             //    yield return new WaitForFixedUpdate();
@@ -1713,6 +1694,32 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public bool FallingDownSoliders()
+    {
+        bool nearEmptySquareDetected = false;
+        int beginMineRows = opponentRows + spaceRows;
+        for (int col = 0; col < maxCols; col++)
+        {
+            for (int row = maxRows - 1; row >= beginMineRows; row--)
+            {
+                if (GetSquare(col, row) != null)
+                {
+                    if (!GetSquare(col, row).IsNone())
+                    {
+                        if (GetSquare(col, row).item != null)
+                        {
+                            if (GetSquare(col, row).item.GetNearEmptySquares())
+                                nearEmptySquareDetected = true;
+
+                        }
+                    }
+                }
+                // if (nearEmptySquareDetected) break;
+            }
+            //   if (nearEmptySquareDetected) break;
+        }
+        return nearEmptySquareDetected;
+    }
     void CheckItemsPositions()
     {//1.6.1
         List<Item> items = GetItems();

@@ -99,4 +99,30 @@ public class EnemyManager : LSingleton<EnemyManager> {
         return itemsList;
     }
 
+
+    public void FallingDownEnemys()
+    {
+        int opponentRows = LevelManager.Instance.opponentRows;
+        int maxCols = LevelManager.Instance.maxCols;
+        for (int col = 0; col < maxCols; col++)
+        {
+            for (int row = opponentRows - 1; row >= 0; row--)
+            {
+                if (GetSquare(col, row) != null)
+                {
+                    if (!GetSquare(col, row).IsNone())
+                    {
+                        if (GetSquare(col, row).item != null)
+                        {
+                            if (GetSquare(col, row).item.GetNearEmptySquares()) ;
+                                //nearEmptySquareDetected = true;
+
+                        }
+                    }
+                }
+                // if (nearEmptySquareDetected) break;
+            }
+            //   if (nearEmptySquareDetected) break;
+        }
+    }
 }
