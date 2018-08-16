@@ -1,22 +1,13 @@
 ﻿<Properties StartupConfiguration="{DDAEF058-4A1D-25DA-062F-F89674B6BC22}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/JellyGarden/Scripts/Item.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityPackages/JsonNetSample/JsonNetSample.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameLogic/BattleSystem.cs" Line="153" Column="55" />
-      <File FileName="Assets/JellyGarden/Scripts/LevelManager.cs" Line="1691" Column="9" />
+      <File FileName="Assets/Scripts/GameLogic/BattleSystem.cs" Line="164" Column="37" />
+      <File FileName="Assets/JellyGarden/Scripts/LevelManager.cs" Line="2101" Column="57" />
       <File FileName="Assets/Scripts/GameLogic/SkillSystem.cs" Line="10" Column="40" />
-      <File FileName="Assets/Scripts/GameLogic/MagicSytem.cs" Line="29" Column="15" />
-      <File FileName="Assets/Scripts/GameLogic/MagicFly.cs" Line="43" Column="30" />
-      <File FileName="Assets/JellyGarden/Scripts/Item.cs" Line="612" Column="54" />
-      <File FileName="Assets/Scripts/GameLogic/Unit.cs" Line="7" Column="21" />
-      <File FileName="Assets/JellyGarden/Scripts/GUI/AnimationManager.cs" Line="240" Column="1" />
-      <File FileName="Assets/Scripts/GameLogic/EffectMgr.cs" Line="45" Column="23" />
-      <File FileName="Assets/Scripts/GameLogic/LSingleton.cs" Line="15" Column="6" />
-      <File FileName="Assets/Scripts/GameLogic/GameData.cs" Line="6" Column="2" />
-      <File FileName="Assets/JellyGarden/Scripts/EnemyManager.cs" Line="119" Column="29" />
-      <File FileName="Assets/JellyGarden/Scripts/Square.cs" Line="65" Column="1" />
-      <File FileName="Assets/JellyGarden/Scripts/System/CombineManager.cs" Line="192" Column="24" />
-      <File FileName="Assets/JellyGarden/Scripts/GUI/GUIEvents.cs" Line="63" Column="61" />
+      <File FileName="Assets/JellyGarden/Scripts/EnemyManager.cs" Line="17" Column="5" />
+      <File FileName="Assets/Scripts/GameLogic/LevelConfig.cs" Line="33" Column="14" />
+      <File FileName="Assets/UnityPackages/JsonNetSample/JsonNetSample.cs" Line="48" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

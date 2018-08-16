@@ -2094,12 +2094,12 @@ public class LevelManager : MonoBehaviour
         }
         ProcessGameDataFromString(mapText.text);
         GameData.Instance.init();
-#if false
+#if true
         //加载怪物生成数据
         TextAsset levelText = Resources.Load("level_" + currentLevel) as TextAsset;
-        //Debug.Log("levelText = " + levelText + "; levelText.text = " + levelText.text);
+        Debug.Log("levelText = " + levelText + "; levelText.text = " + levelText.text);
         levelConfig = JsonConvert.DeserializeObject<CLevelConfig>(levelText.text);
-        //Debug.Log("levelConfig = " + levelConfig);
+        Debug.Log("levelConfig = " + levelConfig);
 #endif
     }
 
