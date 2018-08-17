@@ -18,14 +18,22 @@ public class EnemyManager : LSingleton<EnemyManager> {
     //生成敌人
     public void GenerateNewEnemys(bool falling = true)
     {
+        
+        if(GameData.Instance.levelData.currentWave >= LevelManager.Instance.levelConfig.WaveDesc.Count)
+        {
+            return;
+        }
         int opponentRows = LevelManager.Instance.opponentRows;
         int maxCols = LevelManager.Instance.maxCols;
         int maxRows = LevelManager.Instance.maxRows;
+        CWave wave = LevelManager.Instance.levelConfig.WaveDesc[GameData.Instance.levelData.currentWave];
+
         for (int col = 0; col < maxCols; col++)
         {
             for (int row = 0; row < opponentRows; row++)
             {
-                if (GetSquare(col, row) != null)
+                int enemyId = wave.GetInitEnemyID(col, row);
+                if (GetSquare(col, row) != null && enemyId >=0 )
                 {
                     if (!GetSquare(col, row).IsNone() && GetSquare(col, row).CanGoInto() && GetSquare(col, row).item == null)
                     {

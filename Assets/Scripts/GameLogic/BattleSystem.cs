@@ -132,7 +132,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
             return;
         }
         intervalCheckWave += Time.deltaTime;
-        if(intervalCheckWave > 2)
+        if(intervalCheckWave > 1)
         {
             intervalCheckWave = 0;
             //先判断游戏是否正在进行
@@ -142,7 +142,7 @@ public class BattleSystem :LSingleton<BattleSystem> {
                 //判断是否需要刷新下一轮怪物
                 if (EnemyManager.Instance.GetEnemyItems().Count == 0 && GameData.Instance.levelinit)
                 {
-                    if (++GameData.Instance.levelData.currentWave > 3)
+                    if (GameData.Instance.levelData.currentWave > 3)
                     {
                         //胜利,显示胜利界面，关卡结算
                         OnSuccess();
@@ -150,8 +150,9 @@ public class BattleSystem :LSingleton<BattleSystem> {
                     }
                     Debug.Log("GameData.Instance.levelData.currentWave = " + GameData.Instance.levelData.currentWave);
                     //刷新下一轮怪物
-                    EnemyManager.Instance.GenerateNewEnemys(true);
                     GameData.Instance.levelData.currentWave++;
+                    EnemyManager.Instance.GenerateNewEnemys(true);
+
                 }
             }
         }
