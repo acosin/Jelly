@@ -38,7 +38,13 @@ public class CWave
             string[] ids = InitEnemyID.Split(',');
             foreach (string id in ids)
             {
-                int enmeyId = int.Parse(id);
+                Debug.Log("id = " + id);
+                int enmeyId = 0;
+                if(id != "")
+                {
+                    enmeyId = int.Parse(id);
+                }
+
                 InitEnemyIDList.Add(enmeyId);
             }
         }

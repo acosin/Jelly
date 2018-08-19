@@ -164,5 +164,8 @@ public class BattleSystem :LSingleton<BattleSystem> {
         LevelManager.Instance.SuccessImage.SetActive(true);
         GameData.Instance.levelData.isEndLevel = true;
         Debug.Log("大吉大利，今晚吃鸡");
+        LevelManager.Instance.stars = 3;
+        LevelManager.Instance.gameStatus = GameState.Win;
+
     }
 }

@@ -340,9 +340,13 @@ public class LevelManager : MonoBehaviour
                 NetworkManager.dataManager.SetPlayerLevel(currentLevel + 1);
                 NetworkManager.dataManager.SetStars();
 #endif
+#if OLD_LOGIC
                 GameObject.Find("CanvasGlobal").transform.Find("MenuComplete").gameObject.SetActive(true);
                 SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.complete[1]);
                 OnWin();
+#else
+                SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.complete[1]);
+#endif
             }
 
 
@@ -355,7 +359,7 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    #endregion
+#endregion
 
     void LockBoosts()
     {
